@@ -3,9 +3,9 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1 th:text="${title}">Family Organizer</h1>
+<header th:replace="fragments :: pageHeader"></header>
 
-<link class="nav-item"><a class="nav-link" href="/home">Home</a></link>
+<h2 th:text="${title}">Family Organizer</h2>
 
 <form method="post">
    <div class="form-group">
