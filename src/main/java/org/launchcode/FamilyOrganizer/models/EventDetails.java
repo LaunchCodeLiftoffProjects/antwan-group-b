@@ -1,9 +1,16 @@
 package org.launchcode.FamilyOrganizer.models;
 
+import net.bytebuddy.asm.Advice;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class EventDetails extends AbstractEntity{
 
     @NotBlank(message = "Event Name is required")
@@ -23,18 +30,25 @@ public class EventDetails extends AbstractEntity{
     @Size(max = 500, message = "Description too long!")
     private String description;
 
+    @OneToOne
+    private Event event;
+
     public EventDetails(){
 
     }
 
-    public EventDetails(String eventName, Date startTime, Date endTime, String name, String location, String description) {
+    public EventDetails(String eventName) {
         this.eventName = eventName;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.name = name;
-        this.location = location;
-        this.description = description;
     }
+
+//    public EventDetails(String eventName, Date startTime, Date endTime, String name, String location, String description) {
+//        this.eventName = eventName;
+//        this.startTime = startTime;
+//        this.endTime = endTime;
+//        this.name = name;
+//        this.location = location;
+//        this.description = description;
+//    }
 
     public String getEventName() {
         return eventName;

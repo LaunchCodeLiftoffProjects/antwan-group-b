@@ -25,16 +25,13 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
-    public EventController(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
-    }
 
     @GetMapping("create")
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new EventDetails());
         model.addAttribute("categories", eventRepository.findAll());//.values() is a built=in static method that return
-        //an array of values defined inthe given enum, in the order in which they have been declare
+        //an array of values defined in the given enum, in the order in which they have been declare
         return "events/create";                                               }
 
     @PostMapping("create")
