@@ -16,6 +16,13 @@
       <p class="error" th:errors="${registerFormDTO.username}"></p>
    </div>
    <div class="form-group">
+      <label>Enter Family Name
+         <input class="form-control" th:field="${registerFormDTO.familyName}" />
+      </label>
+      <p class="error" th:errors="${registerFormDTO.familyName}"></p>
+   </div>
+
+   <div class="form-group">
       <label>Enter Password
          <input class="form-control" th:field="${registerFormDTO.password}" type="password" />
       </label>
