@@ -1,25 +1,19 @@
 package org.launchcode.FamilyOrganizer.models;
 
-import net.bytebuddy.asm.Advice;
-
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class EventDetails extends AbstractEntity{
 
-    @NotBlank(message = "Event Name is required")
-    private String eventName;
 
-    @NotBlank(message = "Start Time is required")
-    private Date startTime;
 
-    private Date endTime;
+    @NotNull(message = "Start Time is required")
+    private double startTime;
+
 
     @Size(max=100, message = "Name too long")
     private String name;
@@ -28,7 +22,7 @@ public class EventDetails extends AbstractEntity{
     private String location;
 
     @Size(max = 500, message = "Description too long!")
-    private String description;
+    private String notes;
 
     @OneToOne
     private Event event;
@@ -37,42 +31,24 @@ public class EventDetails extends AbstractEntity{
 
     }
 
-    public EventDetails(String eventName) {
-        this.eventName = eventName;
-    }
+   public EventDetails(double startTime, Date endTime, String name, String location, String notes) {
+        this.startTime = startTime;
+        this.name = name;
+        this.location = location;
+        this.notes = notes;
+   }
 
-//    public EventDetails(String eventName, Date startTime, Date endTime, String name, String location, String description) {
-//        this.eventName = eventName;
-//        this.startTime = startTime;
-//        this.endTime = endTime;
-//        this.name = name;
-//        this.location = location;
-//        this.description = description;
-//    }
 
-    public String getEventName() {
-        return eventName;
-    }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
-
-    public Date getStartTime() {
+    public double getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(double startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
-    }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
 
     public String getName() {
         return name;
@@ -90,11 +66,11 @@ public class EventDetails extends AbstractEntity{
         this.location = location;
     }
 
-    public String getDescription() {
-        return description;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String notes) {
+        this.notes = notes;
     }
 }

@@ -1,5 +1,6 @@
 package org.launchcode.FamilyOrganizer.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -15,7 +16,7 @@ public class Event extends AbstractEntity{
     @Size(min=3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
 
-    @OneToOne//(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @Valid
     @NotNull
     private EventDetails eventDetails;

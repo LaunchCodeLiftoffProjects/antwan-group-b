@@ -1,22 +1,15 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
 import org.launchcode.FamilyOrganizer.data.EventRepository;
+import org.launchcode.FamilyOrganizer.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
-import org.launchcode.FamilyOrganizer.models.EventDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.*;
-import java.util.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("events")
@@ -25,25 +18,64 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
+    @GetMapping
+    public String displayEvents(Model model) {
+            model.addAttribute("title", "All Events");
+            model.addAttribute("events", eventRepository.findAll());
+        return "events/index";
+    }
 
     @GetMapping("create")
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
-        model.addAttribute(new EventDetails());
-        model.addAttribute("categories", eventRepository.findAll());//.values() is a built=in static method that return
-        //an array of values defined in the given enum, in the order in which they have been declare
-        return "events/create";                                               }
+        model.addAttribute(new Event());
+        model.addAttribute("categories", eventRepository.findAll());
+        return "events/create";
+    }
 
     @PostMapping("create")
-    public String processCreateEventForm(@ModelAttribute @Valid EventDetails newEvent, Errors errors, Model model) {
+    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Event");
             return "events/create";
         }
-//without the cascade line on @OneToOne, the below line save(newEvent) would generate an error because of some field being
-// in the seperate EventDetails class.  In this case, trying to save newEvent causes problems because its eventDetails field
-// cannot be null, but the value of this field = a new EventDetails object created on form submission, has not been saved yet
+
         eventRepository.save(newEvent);
         return "redirect:";
+    }
+
+    @GetMapping("cancel")
+    public String displayCancelEventForm(Model model) {
+        model.addAttribute("title", "Cancel Event");
+        model.addAttribute("events", eventRepository.findAll());
+        return "events/cancel";
+    }
+
+    @PostMapping("cancel")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
+
+        if (eventIds != null) {
+            for (int id : eventIds) {
+                eventRepository.deleteById(id);
+            }
+        }
+
+        return "redirect:";
+    }
+
+    @GetMapping("detail")
+    public String displayEventDetails(@RequestParam Integer eventId, Model model) {
+
+        Optional<Event> result = eventRepository.findById(eventId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Event ID: " + eventId);
+        } else {
+            Event event = result.get();
+            model.addAttribute("title", event.getName() + " Details");
+            model.addAttribute("event", event);
+        }
+
+        return "events/displayEvent";
     }
 }

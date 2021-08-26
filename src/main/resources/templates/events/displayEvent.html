@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+</head>
+<body class="container">
+
+<table class="table table-striped">
+  <tr>
+    <th>Event Name</th>
+    <td th:text="${event.name}"></td>
+  </tr>
+
+  <tr>
+    <th>Location</th>
+    <td th:text="${event.eventDetails.location}"></td>
+  </tr>
+  <tr>
+    <th>Responsible adult</th>
+    <td th:text="${event.eventDetails.name}"></td>
+  </tr>
+  <tr>
+    <th>Notes</th>
+    <td th:text="${event.eventDetails.notes}"></td>
+  </tr>
+
+</table>
+</body>
+</html>
