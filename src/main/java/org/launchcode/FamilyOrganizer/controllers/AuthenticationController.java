@@ -1,6 +1,8 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
 import org.launchcode.FamilyOrganizer.data.UserRepository;
+import org.launchcode.FamilyOrganizer.models.Event;
+import org.launchcode.FamilyOrganizer.models.ToDoList;
 import org.launchcode.FamilyOrganizer.models.User;
 import org.launchcode.FamilyOrganizer.models.dto.LoginFormDTO;
 import org.launchcode.FamilyOrganizer.models.dto.RegisterFormDTO;
@@ -11,11 +13,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +29,9 @@ public class AuthenticationController {
     UserRepository userRepository;
 
     private static final String userSessionKey = "user";
+
+    private static List<Event> events = new ArrayList<>();
+    private static List<ToDoList> todolist = new ArrayList<>();
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -53,7 +60,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
+    public Object processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
 
@@ -82,7 +89,7 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return new ModelAndView("redirect:home/view");
     }
 
     @GetMapping("/login")
@@ -93,7 +100,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
+    public Object processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
@@ -120,7 +127,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return new ModelAndView("redirect:home/view");
     }
 
     @GetMapping("/logout")
@@ -128,5 +135,6 @@ public class AuthenticationController {
         request.getSession().invalidate();
         return "/logout";
     }
+
 
 }
