@@ -1,18 +1,19 @@
 package org.launchcode.FamilyOrganizer.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 public class EventDetails extends AbstractEntity{
 
-
-
-    @NotNull(message = "Start Time is required")
-    private double startTime;
+    @DateTimeFormat(pattern = "hh:mm")
+    private Date startTime;
 
 
     @Size(max=100, message = "Name too long")
@@ -31,7 +32,7 @@ public class EventDetails extends AbstractEntity{
 
     }
 
-   public EventDetails(double startTime, Date endTime, String name, String location, String notes) {
+   public EventDetails(Date startTime, Date endTime, String name, String location, String notes) {
         this.startTime = startTime;
         this.name = name;
         this.location = location;
@@ -40,11 +41,11 @@ public class EventDetails extends AbstractEntity{
 
 
 
-    public double getStartTime() {
+    public java.util.@NotNull(message = "Start Time is required") Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(double startTime) {
+    public void setStartTime(java.util.Date startTime) {
         this.startTime = startTime;
     }
 

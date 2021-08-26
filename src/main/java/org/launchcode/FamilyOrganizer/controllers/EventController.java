@@ -8,8 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.Optional;
+
 
 @Controller
 @RequestMapping("events")
@@ -17,6 +21,9 @@ public class EventController {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     @GetMapping
     public String displayEvents(Model model) {
