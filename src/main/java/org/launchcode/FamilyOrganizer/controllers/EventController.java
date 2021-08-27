@@ -3,14 +3,19 @@ package org.launchcode.FamilyOrganizer.controllers;
 import org.launchcode.FamilyOrganizer.data.EventRepository;
 import org.launchcode.FamilyOrganizer.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -19,11 +24,16 @@ import java.util.Optional;
 @RequestMapping("events")
 public class EventController {
 
+
     @Autowired
     private EventRepository eventRepository;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @InitBinder
+    public void initBinder(WebDataBinder binder, WebRequest request) {
+        //convert the date Note that the conversion here should always be in the same format as the string passed in, e.g. 2015-9-9 should be yyyy-MM-dd
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// CustomDateEditor is a custom date editor
+    }
 
     @GetMapping
     public String displayEvents(Model model) {

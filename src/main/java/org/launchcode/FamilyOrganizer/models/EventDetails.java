@@ -2,8 +2,7 @@ package org.launchcode.FamilyOrganizer.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -12,8 +11,9 @@ import java.util.Date;
 @Entity
 public class EventDetails extends AbstractEntity{
 
-    @DateTimeFormat(pattern = "hh:mm")
-    private Date startTime;
+    @DateTimeFormat(pattern= "dd-MM-yyyy HH:mm:ss")
+    @Column(name="date")
+    private Date date;
 
 
     @Size(max=100, message = "Name too long")
@@ -32,24 +32,20 @@ public class EventDetails extends AbstractEntity{
 
     }
 
-   public EventDetails(Date startTime, Date endTime, String name, String location, String notes) {
-        this.startTime = startTime;
+   public EventDetails(Date date, String name, String location, String notes) {
+        this.date = date;
         this.name = name;
         this.location = location;
         this.notes = notes;
    }
 
-
-
-    public java.util.@NotNull(message = "Start Time is required") Date getStartTime() {
-        return startTime;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartTime(java.util.Date startTime) {
-        this.startTime = startTime;
+    public void setDate(Date date) {
+        this.date = date;
     }
-
-
 
     public String getName() {
         return name;
