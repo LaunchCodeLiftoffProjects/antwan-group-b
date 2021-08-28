@@ -2,7 +2,6 @@ package org.launchcode.FamilyOrganizer.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -21,10 +20,6 @@ public class Event extends AbstractEntity{
     @Valid
     @NotNull
     private EventDetails eventDetails;
-
-    @ManyToOne
-    @NotNull(message = "User is required")
-    private User user;
 
     public Event(String name, EventDetails eventDetails) {
         this.name = name;

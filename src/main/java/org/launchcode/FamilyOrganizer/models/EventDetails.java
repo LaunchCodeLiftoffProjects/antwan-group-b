@@ -2,8 +2,9 @@ package org.launchcode.FamilyOrganizer.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -67,7 +68,7 @@ public class EventDetails extends AbstractEntity{
         return notes;
     }
 
-    public void setDescription(String notes) {
+    public void setNotes(String notes) {
         this.notes = notes;
     }
 }

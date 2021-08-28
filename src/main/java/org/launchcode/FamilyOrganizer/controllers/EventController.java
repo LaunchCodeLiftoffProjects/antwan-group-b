@@ -11,8 +11,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -80,7 +78,7 @@ public class EventController {
         return "redirect:";
     }
 
-    @GetMapping("detail")
+    @GetMapping("displayEvent")
     public String displayEventDetails(@RequestParam Integer eventId, Model model) {
 
         Optional<Event> result = eventRepository.findById(eventId);
