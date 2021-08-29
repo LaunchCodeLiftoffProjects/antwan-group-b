@@ -11,10 +11,16 @@
                 <p class="error" th:errors="${event.name}"></p>
             </div>
             <div class="form-group">
-                <label>Starts
+                <label>Date
                 <input th:type="datetime" th:field="${event.eventDetails.date}" class="form-control">
                 </label>
                 <p class="error" th:errors="${event.eventDetails.date}"></p>
+            </div>
+            <div class="form-group">
+                <label>Time
+                    <input th:type="datetime" th:field="${event.eventDetails.time}" class="form-control">
+                </label>
+                <p class="error" th:errors="${event.eventDetails.time}"></p>
             </div>
 
             <div class="form-group">

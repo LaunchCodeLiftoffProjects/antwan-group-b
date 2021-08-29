@@ -8,14 +8,19 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-
 @Entity
 public class EventDetails extends AbstractEntity{
 
-    @DateTimeFormat(pattern= "dd-MM-yyyy HH:mm:ss")
+
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name="date")
     private Date date;
 
+
+    @DateTimeFormat(pattern="HH:mm")
+    @Column(name="time")
+    private Date time;
 
     @Size(max=100, message = "Name too long")
     private String name;
@@ -33,8 +38,9 @@ public class EventDetails extends AbstractEntity{
 
     }
 
-   public EventDetails(Date date, String name, String location, String notes) {
+   public EventDetails(Date date, Date time, String name, String location, String notes) {
         this.date = date;
+        this.time = time;
         this.name = name;
         this.location = location;
         this.notes = notes;
@@ -43,6 +49,10 @@ public class EventDetails extends AbstractEntity{
     public Date getDate() {
         return date;
     }
+
+    public Date getTime() { return time; }
+
+    public void setTime(Date time) { this.time = time; }
 
     public void setDate(Date date) {
         this.date = date;
