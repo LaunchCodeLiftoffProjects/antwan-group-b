@@ -1,6 +1,6 @@
 package org.launchcode.FamilyOrganizer.models;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +17,7 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     @NotBlank
     @Size(message="Must be at least 3 characters long")
     private String familyName;
