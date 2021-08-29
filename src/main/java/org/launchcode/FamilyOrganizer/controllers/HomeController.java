@@ -1,11 +1,9 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
-import org.launchcode.FamilyOrganizer.data.UserRepository;
+import org.launchcode.FamilyOrganizer.data.EventRepository;
 import org.launchcode.FamilyOrganizer.models.Event;
 import org.launchcode.FamilyOrganizer.models.ToDoList;
 import org.launchcode.FamilyOrganizer.models.User;
-import org.launchcode.FamilyOrganizer.models.dto.LoginFormDTO;
-import org.launchcode.FamilyOrganizer.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +20,9 @@ import java.util.List;
 @Controller
 @RequestMapping("home")
 public class HomeController extends AuthenticationController{
+
+    @Autowired
+    private EventRepository eventRepository;
 
     private static List<Event> events = new ArrayList<>();
     private static List<ToDoList> todolist = new ArrayList<>();
@@ -41,9 +42,9 @@ public class HomeController extends AuthenticationController{
         model.addAttribute("title1", UserName);
 
         //Events
-        events.add(new Event("8:30 AM Dr Appointment","Mom"));
+        //events.add(new Event("8:30 AM Dr Appointment","Mom"));
         model.addAttribute("title", "All Events");
-        model.addAttribute("events", events);
+        model.addAttribute("events", eventRepository.findAll());//this will need to be findByUserId, I think
         //To DO List
         todolist.add(new ToDoList("Laundry","Dad"));
         model.addAttribute("title2","To Do List");

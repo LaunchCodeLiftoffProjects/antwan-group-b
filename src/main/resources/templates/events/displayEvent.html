@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Event</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body class="container">
+
+<header th:replace="fragments :: pageHeader"></header>
 
 <table class="table table-striped">
   <tr>
     <th>Event Name</th>
     <td th:text="${event.name}"></td>
+  </tr>
+  <tr>
+    <th>Starts</th>
+    <td th:text="${event.EventDetails.date}"></td>
   </tr>
 
   <tr>
@@ -17,7 +20,7 @@
     <td th:text="${event.eventDetails.location}"></td>
   </tr>
   <tr>
-    <th>Responsible adult</th>
+    <th>Who's going</th>
     <td th:text="${event.eventDetails.name}"></td>
   </tr>
   <tr>

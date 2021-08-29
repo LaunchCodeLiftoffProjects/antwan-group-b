@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head th:replace="fragments :: head"></head>
-    <body class="container">
-    <header th:replace="fragments :: header"></header>
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<div class="card-header">
+    <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
+    <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+</div>
+
         <form method="post">
             <div class="form-group">
                 <label>Event Name

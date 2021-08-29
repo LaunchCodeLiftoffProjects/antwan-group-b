@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<header th:replace="fragments :: header"></header>
+<header th:replace="fragments :: pageHeader"></header>
 
 <table class="table table-striped">
   <thead>
@@ -15,6 +15,14 @@
     <td><a th:href="'/events/?eventId=' + ${event.id}" th:text="${event.name}"></a></td>
   </tr>
 </table>
-
+<ul class="card-footer">
+  <ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="/events">To Do List</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events">Monthly Calendar</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events">Grocery List</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events/create">Add Event</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events">Add Task</a></li>
+  </ul>
+</ul>
 </body>
 </html>
