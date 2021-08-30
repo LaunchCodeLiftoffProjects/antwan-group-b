@@ -11,21 +11,28 @@
 
 <body class="container">
 
-<nav th:replace="fragments :: nav"></nav>
+    <nav th:replace="fragments :: nav"></nav>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Grocery List</th>
-    </tr>
-    </thead>
-    <th:block th:each="item : ${groceryList}">
-    <tr>
-        <td th:text="${item}">Grocery List Item</td>
-        <td><input type="submit" value="delete" class="btn btn-danger"></td>
-    </tr>
-    </th:block>
-</table>
+    <h1>Grocery List</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+            <th:block th:each="item : ${groceryList}">
+            <tr>
+                <td th:text="${item.key}">Grocery List Item</td>
+                <td th:text="${item.value}">Quantity</td>
+                <td><input type="submit" value="Delete" class="btn btn-outline-danger"></td>
+            </tr>
+            </th:block>
+    </table>
+
+    <a class="btn btn-outline-secondary" href="/groceryList/addItem" role="button">Add Item</a>
 
 </body>
 </html>
