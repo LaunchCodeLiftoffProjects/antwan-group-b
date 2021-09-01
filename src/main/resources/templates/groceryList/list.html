@@ -23,10 +23,13 @@
                 <th></th>
             </tr>
         </thead>
+            <div>
+                <p th:unless="${groceryList} and ${groceryList.size()}">Ut-Oh!! Your grocery list is empty!</p>
+            </div>
             <th:block th:each="item : ${groceryList}">
             <tr>
-                <td th:text="${item.key}">Grocery List Item</td>
-                <td th:text="${item.value}">Quantity</td>
+                <td th:text="${item.key}">Add a new item</td>
+                <td th:text="${item.value}"></td>
                 <td><input type="submit" value="Delete" class="btn btn-outline-danger"></td>
             </tr>
             </th:block>

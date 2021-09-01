@@ -13,12 +13,15 @@
 <nav th:replace="fragments :: nav"></nav>
     <h1>Add Item to Grocery List</h1>
 
-    <form th:action="@{/groceryList/list}" method="post">
+    <form method="post">
         <div>
-            Item Name: <input type="text" name="item"/>
+            Item Name: <input type="text" name="itemName"/>
         </div>
         <div>
-            Quantity: <input type="number" name="quantity"/>
+            Quantity: <input type="number" name="quantity" min="0" max="25"/>
+        </div>
+        <div>
+            <input type="submit" value="Add item">
         </div>
 
     </form>
