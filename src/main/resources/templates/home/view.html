@@ -4,9 +4,9 @@
 </head>
 <body class="container">
 <div class="card-header">
-        <a class="nav-link float-right" href="/home/logout">Logout</a>
         <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
         <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+    <a class="nav-link float-right" href="/home/logout">Logout</a>
 </div>
 </br>
 <table class="table table-striped" style="width:45%;display:inline-block">
@@ -25,21 +25,23 @@
 
 <table class="table table-striped" style="width:45%;display:inline-block">
     <thead>
-    <tr><th>To Do List</th><th></th></tr>
+    <tr><th>To Do List</th><th></th><th></th></tr>
     <tr>
         <th>Who</th>
         <th>To-Do List</th>
+        <th>Start Time</th>
     </tr>
     </thead>
     <tr th:each="todolist : ${todolist}">
         <td th:text="${todolist.member}"></td>
         <td th:text="${todolist.name}"></td>
+        <td th:text="${todolist.start}"></td>
     </tr>
 </table>
 
 <ul class="card-footer">
     <ul class="nav">
-    <li class="nav-item"><a class="nav-link" href="/events">To Do List</a></li>
+    <li class="nav-item"><a class="nav-link" href="/home/todolist">To Do List</a></li>
     <li class="nav-item"><a class="nav-link" href="/events">Monthly Calendar</a></li>
     <li class="nav-item"><a class="nav-link" href="/events">Grocery List</a></li>
     <li class="nav-item"><a class="nav-link" href="/events">Add Event</a></li>

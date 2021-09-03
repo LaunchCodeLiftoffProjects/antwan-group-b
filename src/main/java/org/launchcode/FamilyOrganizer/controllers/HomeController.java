@@ -1,5 +1,6 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
+import org.launchcode.FamilyOrganizer.data.ToDoListRepository;
 import org.launchcode.FamilyOrganizer.data.UserRepository;
 import org.launchcode.FamilyOrganizer.models.Event;
 import org.launchcode.FamilyOrganizer.models.ToDoList;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.Format;
@@ -26,6 +29,9 @@ public class HomeController extends AuthenticationController{
     private static List<Event> events = new ArrayList<>();
     private static List<ToDoList> todolist = new ArrayList<>();
 
+    @Autowired
+    ToDoListRepository toDoListRepository;
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
@@ -35,6 +41,7 @@ public class HomeController extends AuthenticationController{
     @GetMapping("view")
     public String home(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
+        int userId = user.getId();
 
         //Family Name
         String UserName = user.getFamilyName();
@@ -45,7 +52,7 @@ public class HomeController extends AuthenticationController{
         model.addAttribute("title", "All Events");
         model.addAttribute("events", events);
         //To DO List
-        todolist.add(new ToDoList("Laundry","Dad"));
+        todolist = (List<ToDoList>) toDoListRepository.findByUserId(userId);
         model.addAttribute("title2","To Do List");
         model.addAttribute("todolist",todolist);
 
@@ -57,5 +64,9 @@ public class HomeController extends AuthenticationController{
         return "home/view";
     }
 
+    @GetMapping("todolist")
+    public Object todolist(){
 
+        return new ModelAndView("redirect:/todolist/view");
+    }
 }
