@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+    <!-- <meta charset="UTF-8"/> -->
+    <title></title>
+<!-- </head> -->
+<body>
+<header th:replace="fragments :: pageHeader"></header>
+    <h2 th:text="${title}">Family Organizer - Menu</h2>
+<form method="post">
+    <div class="form-group">
+        <label>Enter Main Course
+            <input class="form-control" th:field="${menu.main_course}" />
+        </label>
+        <p class="error" th:errors="${menu.main_course}"></p>
+    </div>
+</body>
+</html>
