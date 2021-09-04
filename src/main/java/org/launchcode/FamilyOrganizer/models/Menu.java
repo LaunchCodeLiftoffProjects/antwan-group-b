@@ -7,8 +7,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class Menu extends AbstractEntity {
 
-    //@ManyToOne
-    //private User userid;
+    /*@ManyToOne
+    private User userid;*/
 
     //@NotNull(message = "Date is required.")
     //private Date date;
@@ -32,8 +32,8 @@ public class Menu extends AbstractEntity {
     @Size(max = 100, message = "Dessert cannot exceed 100 characters.")
     private String dessert;
 
-    public Menu(/*User userID, Date date,*/ String main_course, String vegetable, String main_side, String additional_side, String dessert) {
-        //this.id = userid;
+    public Menu(/*User userID, /*Date date,*/ String main_course, String vegetable, String main_side, String additional_side, String dessert) {
+        //this.userid = userid;
         //this.date = date;
         this.main_course = main_course;
         this.vegetable = vegetable;
