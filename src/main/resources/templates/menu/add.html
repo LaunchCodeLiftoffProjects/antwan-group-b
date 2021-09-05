@@ -10,9 +10,9 @@
 <form method="post">
     <div class="form-group">
         <label>Enter Main Course
-            <input class="form-control" th:field="${menu.main_course}" />
+            <input class="form-control" th:field="${menu.mainCourse}" />
         </label>
-        <p class="error" th:errors="${menu.main_course}"></p>
+        <p class="error" th:errors="${menu.mainCourse}"></p>
     </div>
     <div class="form-group">
         <label>Enter Vegetable
@@ -22,15 +22,15 @@
     </div>
     <div class="form-group">
         <label>Enter Main Side
-            <input class="form-control" th:field="${menu.main_side}" />
+            <input class="form-control" th:field="${menu.mainSide}" />
         </label>
-        <p class="error" th:errors="${menu.main_side}"></p>
+        <p class="error" th:errors="${menu.mainSide}"></p>
     </div>
     <div class="form-group">
         <label>Enter additional_side
-            <input class="form-control" th:field="${menu.additional_side}" />
+            <input class="form-control" th:field="${menu.additionalSide}" />
         </label>
-        <p class="error" th:errors="${menu.additional_side}"></p>
+        <p class="error" th:errors="${menu.additionalSide}"></p>
     </div>
     <div class="form-group">
         <label>Enter Dessert

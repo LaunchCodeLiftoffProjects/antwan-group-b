@@ -24,7 +24,7 @@ public class MenuController {
         return "/menu/add";
     }
 
-    @PostMapping("/menu/add")
+    @PostMapping("add")
     public String processMenuAddForm(@ModelAttribute Errors errors,
                                      Model model) {
 
@@ -33,6 +33,6 @@ public class MenuController {
             return "/menu/add";
         }
 
-        return null;
+        return "/menu/add";
     }
 }
