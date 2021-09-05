@@ -1,10 +1,15 @@
 package org.launchcode.FamilyOrganizer.models;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
@@ -28,6 +33,7 @@ public class User extends AbstractEntity {
         this.username = username;
         this.pwHash = encoder.encode(password);
         this.familyName = familyName;
+;
     }
 
     public String getFamilyName() {

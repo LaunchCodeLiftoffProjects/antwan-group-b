@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+   <meta charset="UTF-8"/>
+   <title>Family Organizer: Grocery List</title>
+   <link rel = "stylesheet" th:href="@{/styles.css}" />
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+
+<body class="container">
+
+<nav th:replace="fragments :: nav"></nav>
+
+<h1 th:text="${title}">Grocery List</h1>
+
+<table class="table table-striped">
+   <thead>
+   <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th></th>
+   </tr>
+   </thead>
+   <div>
+      <p th:unless="${groceryList} and ${groceryList.size()}">Ut-Oh!! Your grocery list is empty!</p>
+   </div>
+   <th:block th:each="item : ${groceryList}">
+      <tr>
+         <td th:text="${item.name}">Add a new item</td>
+         <td th:text="${item.quantity}"></td>
+         <td><input type="submit" value="Delete" class="btn btn-outline-danger"></td>
+      </tr>
+   </th:block>
+</table>
+<br>
+<br>
+<a class="btn btn-primary" href="/groceryList/addItem" role="button">Add Item</a>
+
+</body>
+</html>
