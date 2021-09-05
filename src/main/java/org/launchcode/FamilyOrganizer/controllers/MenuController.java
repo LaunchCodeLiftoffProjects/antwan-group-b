@@ -1,7 +1,6 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
 import org.launchcode.FamilyOrganizer.data.MenuRepository;
-import org.launchcode.FamilyOrganizer.data.UserRepository;
 import org.launchcode.FamilyOrganizer.models.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,7 @@ public class MenuController {
 
     @Autowired
     private MenuRepository menuRepository;
-    private UserRepository userRepository;
+//    private UserRepository userRepository;
 
     @GetMapping("add")
     public String menu(Model model) {
