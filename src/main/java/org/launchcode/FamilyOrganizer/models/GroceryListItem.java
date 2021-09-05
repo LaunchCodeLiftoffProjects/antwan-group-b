@@ -15,11 +15,11 @@ public class GroceryListItem extends AbstractEntity{
     @ManyToOne
     private User user;
 
-//    @NotBlank(message = "Name of item is required.")
-//    @Size(max=100, message="Item name cannot exceed 100 characters")
+    @NotBlank(message = "Name of item is required.")
+    @Size(max=100, message="Item name cannot exceed 100 characters")
     private String name;
 
-//    @NotNull(message="Must have a quantity of items")
+    @NotNull(message="Must have a quantity of items")
     private int quantity;
 
     public GroceryListItem() {

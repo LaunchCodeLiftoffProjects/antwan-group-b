@@ -13,22 +13,22 @@
 <nav th:replace="fragments :: nav"></nav>
 <h1>Add Item to Grocery List</h1>
 
-<form method="post" th:action="@{/addItem}">
+<form method="post">
     <div class="form-group">
         <label>Enter new Grocery Item:
-            <input type="text" name="name"/>
+            <input type="text" th:field="${groceryListItem.name}"/>
         </label>
-<!--        <p class="error" th:errors="${groceryListItem.name}"></p>-->
+        <p class="error" th:errors="${groceryListItem.name}"></p>
     </div>
     <div class="form-group">
         <label>Enter Quantity:
-            <input type="number" name="quantity" min="0" max="25"/>
+            <input type="number" th:field="${groceryListItem.quantity}" min="0" max="25"/>
         </label>
-<!--        <p class="error" th:errors="${groceryListItem.quantity}"></p>-->
+        <p class="error" th:errors="${groceryListItem.quantity}"></p>
     </div>
 
     <div>
-        <input type="submit" value="Add item">
+        <input type="submit" class="btn btn-primary" value="Add item">
     </div>
 
 </form>

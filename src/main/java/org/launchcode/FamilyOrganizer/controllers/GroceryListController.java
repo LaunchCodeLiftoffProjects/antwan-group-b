@@ -81,7 +81,7 @@ public class GroceryListController extends AuthenticationController {
         GroceryListItem newItem = new GroceryListItem(groceryListItem.getName(), groceryListItem.getQuantity(), user);
         groceryListRepository.save(newItem);
 
-        return "redirect:/groceryList/view";
+        return "redirect:groceryList/view";
 
     }
 
