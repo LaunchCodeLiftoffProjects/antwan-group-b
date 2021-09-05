@@ -11,6 +11,7 @@ public class Menu extends AbstractEntity {
     @ManyToOne
     private User user;
 
+
     //@NotNull(message = "Date is required.")
     //private Date date;
 

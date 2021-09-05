@@ -27,6 +27,7 @@ public class MenuController {
     }
 
     @PostMapping("add")
+
     public String processMenuAddForm(@ModelAttribute Menu menuItem, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
@@ -35,6 +36,7 @@ public class MenuController {
         }
 
         menuRepository.save(menuItem);
+
         return "/menu/add";
     }
 }
