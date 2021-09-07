@@ -49,7 +49,7 @@ public class MenuController extends AuthenticationController{
             return "/menu/add";
         }
 
-        Menu newMenu = new Menu(menu.getMainCourse(), menu.getVegetable(), menu.getMainSide(), menu.getAdditionalSide(),
+        Menu newMenu = new Menu(menu.getDate(), menu.getMainCourse(), menu.getVegetable(), menu.getMainSide(), menu.getAdditionalSide(),
                                 menu.getDessert(), user);
         menuRepository.save(newMenu);
 

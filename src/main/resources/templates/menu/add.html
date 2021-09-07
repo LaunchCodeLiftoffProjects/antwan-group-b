@@ -8,6 +8,26 @@
 <header th:replace="fragments :: pageHeader"></header>
     <h2 th:text="${title}">Family Organizer - Menu</h2>
 <form method="post">
+    <div>
+    <label>Day of Week:
+    <select th:field="${date}">
+        <!-- <option value = "">* Select One *</option> -->
+        <option th:value ="'Sunday'" th:text="Sunday"></option>
+        <option th:value ="'Monday'" th:text="Monday"></option>
+        <option th:value ="'Tuesday'" th:text="Tuesday"></option>
+        <option th:value ="'Wednesday'" th:text="Wednesday"></option>
+        <option th:value ="'Thursday'" th:text="Thursday"></option>
+        <option th:value ="'Friday'" th:text="Friday"></option>
+        <option th:value ="'Saturday'" th:text="Saturday"></option>
+    </select>
+      </label>
+    </div>
+   <!-- <div class="form-group">
+        <label>Select Day
+            <input class="form-control" th:field="${menu.date}" />
+        </label>
+        <p class="error" th:errors="${menu.mainCourse}"></p>
+    </div> -->
     <div class="form-group">
         <label>Enter Main Course
             <input class="form-control" th:field="${menu.mainCourse}" />

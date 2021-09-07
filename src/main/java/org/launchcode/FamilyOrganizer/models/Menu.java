@@ -11,12 +11,8 @@ public class Menu extends AbstractEntity {
     @ManyToOne
     private User user;
 
-
-    //@NotNull(message = "Date is required.")
-    //private Date date;
-
-
-//private  dateFormat = DateFormat.getDateInstance(Full).format(date);
+    @NotNull(message = "Date is required. Pick day of week from drop down menu.")
+    private String date;
 
     @NotNull(message = "Main Course is required.")
     @Size(max = 250, message = "Main course cannot exceed 250 characters.")
@@ -34,32 +30,25 @@ public class Menu extends AbstractEntity {
     @Size(max = 100, message = "Dessert cannot exceed 100 characters.")
     private String dessert;
 
-    public Menu(/*Date date,*/ String mainCourse, String vegetable, String mainSide, String additionalSide,
+    public Menu(String date, String mainCourse, String vegetable, String mainSide, String additionalSide,
                                String dessert, User user) {
-        this.user = user;
-        //this.date = date;
+
+        this.date = date;
         this.mainCourse = mainCourse;
         this.vegetable = vegetable;
         this.mainSide = mainSide;
         this.additionalSide = additionalSide;
         this.dessert = dessert;
+        this.user = user;
     }
 
     public Menu() {
 
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-    /*public Date getDate() {
+    public String getDate() {
         return date;
-    }*/
+    }
 
     public String getMainCourse() {
         return mainCourse;
