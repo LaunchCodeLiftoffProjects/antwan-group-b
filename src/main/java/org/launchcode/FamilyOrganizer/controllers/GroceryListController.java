@@ -42,10 +42,10 @@ public class GroceryListController extends AuthenticationController {
     public Object getGroceryList(@ModelAttribute @Valid GroceryListItem groceryListItem,
                                  Errors errors, HttpServletRequest request,
                                  Model model){
-        model.addAttribute("title", "Add Item to Grocery List");
+        model.addAttribute("title", "Your Grocery List");
         User user = getUserFromSession(request.getSession());
         int userId = user.getId();
-        List<GroceryListItem> groceryList1 = (List<GroceryListItem>) groceryListRepository.findByUserId(userId);
+        List<GroceryListItem> groceryList1 = groceryListRepository.findByUserId(userId);
         model.addAttribute("groceryList", groceryList1);
 
         return"groceryList/view";
@@ -78,10 +78,10 @@ public class GroceryListController extends AuthenticationController {
             return "/groceryList/addItem";
         }
 
-        GroceryListItem newItem = new GroceryListItem(groceryListItem.getName(), groceryListItem.getQuantity(), user);
+        GroceryListItem newItem = new GroceryListItem(groceryListItem.getName(), groceryListItem.getQuantity());
         groceryListRepository.save(newItem);
 
-        return "redirect:groceryList/view";
+        return "redirect:/view";
 
     }
 

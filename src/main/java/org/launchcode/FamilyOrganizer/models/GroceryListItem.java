@@ -1,10 +1,7 @@
 package org.launchcode.FamilyOrganizer.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,7 +9,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class GroceryListItem extends AbstractEntity{
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @NotBlank(message = "Name of item is required.")
@@ -25,10 +23,9 @@ public class GroceryListItem extends AbstractEntity{
     public GroceryListItem() {
     }
 
-    public GroceryListItem(String name, int quantity, User user) {
+    public GroceryListItem(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
-        this.user = user;
     }
 
     public String getName() {
