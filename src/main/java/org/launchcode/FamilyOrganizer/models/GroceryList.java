@@ -1,34 +1,46 @@
 package org.launchcode.FamilyOrganizer.models;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class GroceryList extends AbstractEntity{
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<GroceryListItem> items = new ArrayList<>();
+    @ManyToOne
+    private User user;
+
+    private String name;
+
+    private int quantity;
 
     public GroceryList() {
     }
 
-    public GroceryList(List<GroceryListItem> item) {
-        this.items = item;
+    public GroceryList(String name, int quantity, User user) {
+        this.name = name;
+        this.quantity = quantity;
+        this.user = user;
     }
 
-    public void addItem(GroceryListItem newItem){
-        items.add(newItem);
+    public String getName() {
+        return name;
     }
 
-    public List<GroceryListItem> getItems() {
-        return items;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setItems(List<GroceryListItem> items) {
-        this.items = items;
+    public int getQuantity() {
+        return quantity;
     }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+
 }
