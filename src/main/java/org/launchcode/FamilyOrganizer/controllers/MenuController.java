@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+//import javax.servlet.http.HttpServletRequest;
+//import javax.validation.Valid;
+
 @Controller
 @RequestMapping("menu")
 public class MenuController {
@@ -19,8 +22,8 @@ public class MenuController {
     private MenuRepository menuRepository;
 //    private UserRepository userRepository;
 
-    @GetMapping("add")
-    public String menu(Model model) {
+    @GetMapping("/add")
+    public String getMenuForm(Model model) {
         model.addAttribute(new Menu());
         return "/menu/add";
     }
@@ -38,4 +41,11 @@ public class MenuController {
 
         return "/menu/add";
     }
+
+//    @GetMapping("/view")
+//    public String getMenuView(Model model) {
+//        model.addAttribute(new Menu());
+//        return "/menu/view";
+//    }
+
 }
