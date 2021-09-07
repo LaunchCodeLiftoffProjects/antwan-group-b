@@ -9,15 +9,14 @@ import javax.validation.constraints.Size;
 @Entity
 public class GroceryListItem extends AbstractEntity{
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne
     private User user;
 
-    @NotBlank(message = "Name of item is required.")
-    @Size(max=100, message="Item name cannot exceed 100 characters")
+//    @NotBlank(message = "Name of item is required.")
+//    @Size(max=100, message="Item name cannot exceed 100 characters")
     private String name;
 
-    @NotNull(message="Must have a quantity of items")
+//    @NotNull(message="Must have a quantity of items")
     private int quantity;
 
     public GroceryListItem() {
@@ -48,8 +47,4 @@ public class GroceryListItem extends AbstractEntity{
         return user;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }

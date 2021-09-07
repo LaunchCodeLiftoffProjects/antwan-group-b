@@ -1,6 +1,7 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
 import org.launchcode.FamilyOrganizer.data.GroceryListRepository;
+import org.launchcode.FamilyOrganizer.models.GroceryList;
 import org.launchcode.FamilyOrganizer.models.GroceryListItem;
 import org.launchcode.FamilyOrganizer.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,69 +21,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("groceryList")
+@RequestMapping("/groceryList")
 public class GroceryListController extends AuthenticationController {
-
-    private static List<GroceryListItem> groceryList = new ArrayList<>();
 
     @Autowired
     private GroceryListRepository groceryListRepository;
 
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        request.getSession().invalidate();
-        return "/logout";
-    }
-    @GetMapping("/home")
-    public Object returnHome(HttpServletRequest request) {
-        return new ModelAndView("redirect:home/view");
-    }
+    private GroceryList groceryList = new GroceryList();
 
-    @GetMapping("/view")
-    public Object getGroceryList(@ModelAttribute @Valid GroceryListItem groceryListItem,
-                                 Errors errors, HttpServletRequest request,
-                                 Model model){
+//    @GetMapping("/logout")
+//    public String logout(HttpServletRequest request){
+//        request.getSession().invalidate();
+//        return "/logout";
+//    }
+
+//    @GetMapping("/home")
+//    public Object returnHome(HttpServletRequest request) {
+//        return new ModelAndView("redirect:home/view");
+//    }
+
+    @RequestMapping("/view")
+    public String getGroceryList(Model model){
         model.addAttribute("title", "Your Grocery List");
-        User user = getUserFromSession(request.getSession());
-        int userId = user.getId();
-        List<GroceryListItem> groceryList1 = groceryListRepository.findByUserId(userId);
-        model.addAttribute("groceryList", groceryList1);
+        model.addAttribute("groceryList", groceryListRepository.findAll());
 
         return"groceryList/view";
     }
 
-    @PostMapping("/view")
-    public String processGroceryList(@ModelAttribute @Valid GroceryListItem groceryListItem,
-                                     Errors errors, HttpServletRequest request,
-                                     Model model){
-        model.addAttribute("title", "Add Item to Grocery List");
-        return "redirect:/groceryList/addItem";
-    }
-
 
     @GetMapping("/addItem")
-    public String renderAddItemForm(@ModelAttribute @Valid GroceryListItem groceryListItem,
-                                    Errors errors, HttpServletRequest request,
-                                    Model model) {
+    public String displayAddItemForm() {
         return "groceryList/addItem";
     }
-
-    @PostMapping("addItem")
-    public String processAddItemForm(@ModelAttribute @Valid GroceryListItem groceryListItem,
-                                     Errors errors, HttpServletRequest request,
-                                     Model model) throws ParseException {
-
-        User user = getUserFromSession(request.getSession());
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Item to Grocery List");
-            return "/groceryList/addItem";
-        }
-
-        GroceryListItem newItem = new GroceryListItem(groceryListItem.getName(), groceryListItem.getQuantity());
-        groceryListRepository.save(newItem);
-
-        return "redirect:/view";
-
-    }
+//
+//    @PostMapping("addItem")
+//    public String processAddItemForm(@ModelAttribute @Valid GroceryListItem groceryListItem,
+//                                     Errors errors, HttpServletRequest request,
+//                                     Model model) throws ParseException {
+//
+//        User user = getUserFromSession(request.getSession());
+//        if (errors.hasErrors()) {
+//            model.addAttribute("title", "Add Item to Grocery List");
+//            return "/groceryList/addItem";
+//        }
+//
+//        GroceryListItem newItem = new GroceryListItem(groceryListItem.getName(), groceryListItem.getQuantity());
+//        groceryListRepository.save(newItem);
+//
+//        return "redirect:/view";
+//
+//    }
 
 }

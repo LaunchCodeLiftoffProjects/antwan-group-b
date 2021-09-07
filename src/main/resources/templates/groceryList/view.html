@@ -24,7 +24,7 @@
    </tr>
    </thead>
 
-   <th:block th:each="item : ${groceryList1}">
+   <th:block th:each="item : ${groceryList}">
       <tr>
          <td th:text="${item.name}">Add a new item</td>
          <td th:text="${item.quantity}"></td>
@@ -33,7 +33,7 @@
    </th:block>
 </table>
 <div>
-   <p th:unless="${groceryList1} and ${groceryList1.size()}">Ut-Oh!! Your grocery list is empty! You should add some items.</p>
+   <p th:unless="${groceryList} and ${groceryList.size()}">Ut-Oh!! Your grocery list is empty! You should add some items.</p>
 </div>
 <br>
 <br>

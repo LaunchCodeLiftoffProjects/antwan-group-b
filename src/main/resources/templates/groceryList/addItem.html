@@ -16,17 +16,18 @@
 <form method="post">
     <div class="form-group">
         <label>Enter new Grocery Item:
-            <input type="text" th:field="${groceryListItem.name}"/>
+            <input type="text" th:field="${name}"/>
         </label>
-<!--        <p class="error" th:errors="${groceryListItem.name}"></p>-->
+<!--        <span class="error" th:errors="${groceryListItem.name}"></span>-->
     </div>
+    <br>
     <div class="form-group">
         <label>Enter Quantity:
-            <input type="number" th:field="${groceryListItem.quantity}" min="0" max="25"/>
+            <input type="number" th:field="${quantity}" min="0" max="25"/>
         </label>
-<!--        <p class="error" th:errors="${groceryListItem.quantity}"></p>-->
+<!--        <span class="error" th:errors="${groceryListItem.quantity}"></span>-->
     </div>
-
+    <br>
     <div>
         <input type="submit" class="btn btn-primary" value="Add item">
     </div>
