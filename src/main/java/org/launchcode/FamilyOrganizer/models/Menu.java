@@ -34,7 +34,8 @@ public class Menu extends AbstractEntity {
     @Size(max = 100, message = "Dessert cannot exceed 100 characters.")
     private String dessert;
 
-    public Menu(User user, /*Date date,*/ String mainCourse, String vegetable, String mainSide, String additionalSide, String dessert) {
+    public Menu(/*Date date,*/ String mainCourse, String vegetable, String mainSide, String additionalSide,
+                               String dessert, User user) {
         this.user = user;
         //this.date = date;
         this.mainCourse = mainCourse;
