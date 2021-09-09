@@ -4,13 +4,13 @@
     <!-- <meta charset="UTF-8"/> -->
     <title></title>
 <!-- </head> -->
-<body>
+<body class="container">
 <header th:replace="fragments :: pageHeader"></header>
     <h2 th:text="${title}">Family Organizer - Menu</h2>
 <form method="post">
     <div>
     <label>Day of Week:
-    <select th:field="${date}">
+    <select th:field="*{menu.date}">
         <!-- <option value = "">* Select One *</option> -->
         <option th:value ="'Sunday'" th:text="Sunday"></option>
         <option th:value ="'Monday'" th:text="Monday"></option>
