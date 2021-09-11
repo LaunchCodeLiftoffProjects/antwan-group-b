@@ -1,7 +1,10 @@
 package org.launchcode.FamilyOrganizer.models;
 
+import org.springframework.context.annotation.Scope;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -10,6 +13,7 @@ import javax.validation.constraints.Size;
 
 
 @Entity
+@Scope("session")
 public class Event extends AbstractEntity{
 
     @NotBlank(message = "Name is required.")
@@ -19,11 +23,16 @@ public class Event extends AbstractEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
     @NotNull
-    private EventDetails eventDetails;
+    public EventDetails eventDetails;
 
-    public Event(String name, EventDetails eventDetails) {
+    @ManyToOne
+ //   @NotNull
+    private User user;
+
+    public Event(String name, EventDetails eventDetails, User user) {
         this.name = name;
         this.eventDetails = eventDetails;
+        this.user = user;
     }
 
     public Event() {
@@ -45,6 +54,10 @@ public class Event extends AbstractEntity{
     public void setEventDetails(EventDetails eventDetails) {
         this.eventDetails = eventDetails;
 
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override

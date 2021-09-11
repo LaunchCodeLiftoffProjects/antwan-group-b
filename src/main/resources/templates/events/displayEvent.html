@@ -4,7 +4,12 @@
 <body class="container">
 
 <header th:replace="fragments :: pageHeader"></header>
-
+<div class="card-header">
+  <a class="nav-link float-right" href="/home/logout">Logout</a>
+  <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
+  <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+</div>
+</br>
 <table class="table table-striped">
   <tr>
     <th>Event Name</th>
@@ -12,7 +17,7 @@
   </tr>
   <tr>
     <th>Starts</th>
-    <td th:text="${event.EventDetails.date}"></td>
+    <td th:text="${#dates.format(event.EventDetails.date, 'MM-dd-yyyy')}"></td>
   </tr>
 
   <tr>
@@ -21,7 +26,7 @@
   </tr>
   <tr>
     <th>Who's going</th>
-    <td th:text="${event.eventDetails.name}"></td>
+    <td  th:text="${event.eventDetails.name}"></td>
   </tr>
   <tr>
     <th>Notes</th>
@@ -29,5 +34,14 @@
   </tr>
 
 </table>
+<ul class="card-footer">
+  <ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="/events">To Do List</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events">Monthly Calendar</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events">Grocery List</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events/create">Add Event</a></li>
+    <li class="nav-item"><a class="nav-link" href="/events">Add Task</a></li>
+  </ul>
+</ul>
 </body>
 </html>

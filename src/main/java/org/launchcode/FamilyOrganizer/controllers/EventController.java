@@ -2,8 +2,11 @@ package org.launchcode.FamilyOrganizer.controllers;
 
 import org.launchcode.FamilyOrganizer.data.EventRepository;
 import org.launchcode.FamilyOrganizer.models.Event;
+import org.launchcode.FamilyOrganizer.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -11,64 +14,81 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
 @Controller
+@Scope("session")
 @RequestMapping("events")
-public class EventController {
+public class EventController extends AuthenticationController{
 
+    private static List<Event> events = new ArrayList<>();
 
     @Autowired
-    private EventRepository eventRepository;
+    EventRepository eventRepository;
 
     @InitBinder
     public void initBinder(WebDataBinder binder, WebRequest request) {
         //convert the date Note that the conversion here should always be in the same format as the string passed in, e.g. 2015-9-9 should be yyyy-MM-dd
-        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat dateFormat=new SimpleDateFormat("MM-dd-yyyy");
+
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// CustomDateEditor is a custom date editor
     }
-
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "/logout";
+    }
     @GetMapping
-    public String displayEvents(Model model) {
+    public String displayEvents(@ModelAttribute @Valid Event event, Errors errors, HttpServletRequest request,  Model model) {
+
             model.addAttribute("title", "All Events");
-            model.addAttribute("events", eventRepository.findAll());
+            User user = getUserFromSession(request.getSession());
+            int userId = user.getId();
+            List<Event> event1 = (List<Event>) eventRepository.findByUserId(userId);
+            model.addAttribute("events", event1);
         return "events/index";
     }
 
-    @GetMapping("create")
-    public String displayCreateEventForm(Model model) {
+    @GetMapping("/create")
+    public String displayCreateEventForm(@ModelAttribute @Valid Event event, Errors errors, HttpServletRequest request, Model model) {
         model.addAttribute("title", "Create Event");
-        model.addAttribute(new Event());
-        model.addAttribute("categories", eventRepository.findAll());
+
         return "events/create";
     }
 
-    @PostMapping("create")
-    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
+
+
+
+    @PostMapping("/create")
+    public Object processCreateEventForm(@ModelAttribute("date")  @Valid @DateTimeFormat(pattern ="yyyy-MM-dd") Date date, Event event,
+                                         Errors errors, Model model, HttpServletRequest request){
+        User user = getUserFromSession(request.getSession());
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Event");
             return "events/create";
         }
 
+        Event newEvent = new Event(event.getName(), event.eventDetails, user);
         eventRepository.save(newEvent);
         return "redirect:";
     }
 
-    @GetMapping("cancel")
+    @GetMapping("/cancel")
     public String displayCancelEventForm(Model model) {
         model.addAttribute("title", "Cancel Event");
         model.addAttribute("events", eventRepository.findAll());
         return "events/cancel";
     }
 
-    @PostMapping("cancel")
+    @PostMapping("/cancel")
     public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
 
         if (eventIds != null) {
@@ -80,11 +100,10 @@ public class EventController {
         return "redirect:";
     }
 
-    @GetMapping("detail")
-    public String displayEventDetails(@RequestParam Integer eventId, Model model) {
+    @GetMapping("/displayEvent")
+    public String displayEventDetails(@RequestParam Integer eventId, HttpServletRequest request, Model model) {
 
         Optional<Event> result = eventRepository.findById(eventId);
-
         if (result.isEmpty()) {
             model.addAttribute("title", "Invalid Event ID: " + eventId);
         } else {

@@ -5,8 +5,7 @@
 <body class="container">
 <div class="card-header">
     <a class="nav-link float-right" href="/home/logout">Logout</a>
-    <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
-    <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+    <tr><th>Create Event</th><th></th></tr>
 </div>
 
         <form method="post">
@@ -18,21 +17,17 @@
             </div>
             <div class="form-group">
                 <label>Starts
-                <input th:type="datetime" th:field="${event.eventDetails.date}" class="form-control">
+                <input th:type="date" th:field="${event.eventDetails.date}" class="form-control"></input>
+          <!--          th:value="date"  the above th:value was originaglly th:field -->
                 </label>
                 <p class="error" th:errors="${event.eventDetails.date}"></p>
             </div>
 
             <div class="form-group">
                 <label> Who's Going
-                    <input th:field="${event.eventDetails.name}">
-      <!--                  <option th:each ="whoIsIt : ${familymembers}"
-                            th:value ="${familyMembers.id}"
-                            th:text = "${familyMembers.name}">
-                        </option>                                                              -->
-                        <p class="error" th:errors="${event.eventDetails.name}"></p>
-                    </input>
-                </label>
+                    <input th:field="${event.eventDetails.name}" class = "form-control" ></input>
+                    </label>
+                <p class="error" th:errors="${event.eventDetails.name}"></p>
             </div>
             <div class="form-group">
                 <label>Location
@@ -50,6 +45,15 @@
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-success">
             </div>
+            <ul class="card-footer">
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="/events">To Do List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/events">Monthly Calendar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/events">Grocery List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/events/create">Add Event</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/events">Add Task</a></li>
+                </ul>
+            </ul>
         </form>
     </body>
 </html>
