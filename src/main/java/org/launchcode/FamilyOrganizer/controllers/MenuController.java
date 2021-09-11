@@ -27,13 +27,11 @@ public class MenuController extends AuthenticationController{
     private static List<Menu> menu = new ArrayList<>();
 
     @Autowired
-    /*private*/ MenuRepository menuRepository;
-//    private UserRepository userRepository;
+    MenuRepository menuRepository;
 
     @GetMapping("/add")
     public String getMenuForm(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
                               Model model) {
-        /*model.addAttribute(new Menu());*/
         return "/menu/add";
     }
 
@@ -53,13 +51,13 @@ public class MenuController extends AuthenticationController{
                                 menu.getDessert(), user);
         menuRepository.save(newMenu);
 
-        return "redirect:/home/view";
+        return "redirect:/menu/view";
     }
 
-//    @GetMapping("/view")
-//    public String getMenuView(Model model) {
-//        model.addAttribute(new Menu());
-//        return "/menu/view";
-//    }
+    @GetMapping("/view")
+    public String getMenuView(Model model) {
+        model.addAttribute("menu", menu);
+        return "/menu/view";
+    }
 
 }
