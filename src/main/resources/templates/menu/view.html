@@ -6,7 +6,8 @@
 <!-- </head> -->
 <body class="container">
 <header th:replace="fragments :: pageHeader"></header>
-<h2 th:text="${title}">Family Organizer - Menu</h2>
+
+<h2 th:text="${title}"></h2>
 <!-- <main>
     <div class="column1">
         <p>Column 1</p>
@@ -18,20 +19,35 @@
         <p>Column 3</p>
     </div>
 </main> -->
-<tr th:each="menu: ${menu}">
-    <td th:text="${menu.date}" />
-    <td th:text="${menu.mainCourse}" />
-    <td th:text="${menu.vegetable}" />
-    <td th:text="${menu.mainSide}" />
-    <td th:text="${menu.additionalSide}" />
-    <td th:text="${menu.dessert}" />
-</tr>
-
+<table>
+    <th:block th:each="menu: ${menu}">
+    <!-- <tr th:each="menu: ${menu}"> -->
+        <tr>
+            <td th:text="${menu.date}" />
+        </tr>
+        <tr>
+            <td th:text="${menu.mainCourse}" />
+        </tr>
+        <tr>
+            <td th:text="${menu.vegetable}" />
+        </tr>
+        <tr>
+            <td th:text="${menu.mainSide}" />
+        </tr>
+        <tr>
+            <td th:text="${menu.additionalSide}" />
+        </tr>
+        <tr>
+            <td th:text="${menu.dessert}" />
+        </tr>
+    </th:block>
+    <!-- </tr> -->
+</table>
 <!-- <form method="post">
     <div class="form-group"> -->
 </body>
 
-<div>
+<!-- <div>
     <h2 th:text="${title}"></h2>
-</div>
+</div> -->
 </html>

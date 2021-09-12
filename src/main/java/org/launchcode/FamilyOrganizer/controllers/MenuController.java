@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //import javax.servlet.http.HttpServletRequest;
 //import javax.validation.Valid;
@@ -54,15 +56,25 @@ public class MenuController extends AuthenticationController{
         return "redirect:/menu/view";
     }
 
-    @GetMapping("view")
-    public String getMenuView(HttpServletRequest request, Model model) {
-
+    @GetMapping("/view")
+    public String getMenuView(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
+                              Model model) {
+        model.addAttribute("title", "Menu");
         User user = getUserFromSession(request.getSession());
-
-        /*public static menu = (List<Menu>) menuRepository;*/
-        model.addAttribute("menu", menu);
+        int userId = user.getId();
+        List<Menu> menuView = (List<Menu>) menuRepository.findAllByUserId(userId);
+        List<Menu> sortedDay = menuView.stream().sorted(Comparator.comparing(Menu::getDate))
+                .collect(Collectors.toList());
+        model.addAttribute("menu", sortedDay);
 
         return "/menu/view";
     }
+
+    /*@PostMapping("/view")
+    public String processMenu(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
+                               Model model) {
+        model.addAttribute("title", "menuView");
+        return "redirect:/menu/view";
+    }*/
 
 }
