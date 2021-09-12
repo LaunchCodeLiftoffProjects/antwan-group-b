@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Menu extends AbstractEntity {
+public class Menu extends AbstractEntity /*implements Serializable*/ {
 
     @ManyToOne
     private User user;

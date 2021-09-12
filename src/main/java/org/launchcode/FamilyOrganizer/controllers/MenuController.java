@@ -54,9 +54,14 @@ public class MenuController extends AuthenticationController{
         return "redirect:/menu/view";
     }
 
-    @GetMapping("/view")
-    public String getMenuView(Model model) {
+    @GetMapping("view")
+    public String getMenuView(HttpServletRequest request, Model model) {
+
+        User user = getUserFromSession(request.getSession());
+
+        /*public static menu = (List<Menu>) menuRepository;*/
         model.addAttribute("menu", menu);
+
         return "/menu/view";
     }
 

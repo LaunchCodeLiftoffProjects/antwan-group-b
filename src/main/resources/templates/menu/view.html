@@ -7,9 +7,25 @@
 <body class="container">
 <header th:replace="fragments :: pageHeader"></header>
 <h2 th:text="${title}">Family Organizer - Menu</h2>
-<main>
-    <h3></h3>
-</main>
+<!-- <main>
+    <div class="column1">
+        <p>Column 1</p>
+    </div>
+    <div class="column2">
+        <p>Column 2</p>
+    </div>
+    <div class="column3">
+        <p>Column 3</p>
+    </div>
+</main> -->
+<tr th:each="menu: ${menu}">
+    <td th:text="${menu.date}" />
+    <td th:text="${menu.mainCourse}" />
+    <td th:text="${menu.vegetable}" />
+    <td th:text="${menu.mainSide}" />
+    <td th:text="${menu.additionalSide}" />
+    <td th:text="${menu.dessert}" />
+</tr>
 
 <!-- <form method="post">
     <div class="form-group"> -->
