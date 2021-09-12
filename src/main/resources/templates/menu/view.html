@@ -19,28 +19,40 @@
         <p>Column 3</p>
     </div>
 </main> -->
-<table>
+<!-- <table> -->
+<ul>
     <th:block th:each="menu: ${menu}">
     <!-- <tr th:each="menu: ${menu}"> -->
-        <tr>
-            <td th:text="${menu.date}" />
-        </tr>
-        <tr>
-            <td th:text="${menu.mainCourse}" />
-        </tr>
-        <tr>
-            <td th:text="${menu.vegetable}" />
-        </tr>
-        <tr>
-            <td th:text="${menu.mainSide}" />
-        </tr>
-        <tr>
-            <td th:text="${menu.additionalSide}" />
-        </tr>
-        <tr>
-            <td th:text="${menu.dessert}" />
-        </tr>
+
+        <ul class="date">
+            <ul style = "font-weight:bold", th:switch="${menu.date}">
+                <span th:case=1>MONDAY</span>
+                <span th:case=2>TUESDAY</span>
+                <span th:case=3>WEDNESDAY</span>
+                <span th:case=4>THURSDAY</span>
+                <span th:case=5>FRIDAY</span>
+                <span th:case=6>SATURDAY</span>
+                <span th:case=7>SUNDAY</span>
+            </ul>
+        </ul>
+        <!-- <tr> -->
+            <ul th:text="${menu.mainCourse}" />
+        <!-- </tr>
+        <tr> -->
+            <ul th:text="${menu.vegetable}" />
+        <!-- </tr>
+        <tr> -->
+            <ul th:text="${menu.mainSide}" />
+        <!-- </tr>
+        <tr> -->
+            <ul th:text="${menu.additionalSide}" />
+        <!-- </tr>
+        <tr> -->
+            <ul th:text="${menu.dessert}" />
+        <!-- </tr> -->
+
     </th:block>
+</ul>
     <!-- </tr> -->
 </table>
 <!-- <form method="post">
