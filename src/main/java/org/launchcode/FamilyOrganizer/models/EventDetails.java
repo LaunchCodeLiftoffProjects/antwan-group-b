@@ -2,21 +2,27 @@ package org.launchcode.FamilyOrganizer.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
-
 
 @Entity
 //@Scope("session")
 public class EventDetails extends AbstractEntity{
 
+   @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern= "yyyy-MM-dd")
     @Column(name="date")
     private Date date;
+
+
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern= "HH:mm")
+    @Column(name="time")
+    private Date time;
+
+
+
 
 
     @Size(max=100, message = "Name too long")
@@ -39,12 +45,14 @@ public class EventDetails extends AbstractEntity{
 
     }
 
-   public EventDetails(Date date, String name, String location, String notes, User user) {
+   public EventDetails(Date date, String name, String location, String notes, Date time, User user) {
         this.date = date;
         this.name = name;
         this.location = location;
         this.notes = notes;
         this.user = user;
+        this.time = time;
+
    }
 
     public Date getDate() {
@@ -81,5 +89,13 @@ public class EventDetails extends AbstractEntity{
 
     public User getUser() {
         return user;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

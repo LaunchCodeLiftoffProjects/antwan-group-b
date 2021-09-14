@@ -16,10 +16,13 @@
     <td th:text="${event.name}"></td>
   </tr>
   <tr>
-    <th>Starts</th>
+    <th>Date</th>
     <td th:text="${#dates.format(event.EventDetails.date, 'MM-dd-yyyy')}"></td>
   </tr>
-
+  <tr>
+    <th>Start Time</th>
+    <td th:text="${#dates.format(event.EventDetails.time, 'HH:mm')}"></td>
+  </tr>
   <tr>
     <th>Location</th>
     <td th:text="${event.eventDetails.location}"></td>
