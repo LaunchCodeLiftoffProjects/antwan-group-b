@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Menu extends AbstractEntity /*implements Serializable*/ {
+public class Menu extends AbstractEntity {
 
     @ManyToOne
     private User user;
@@ -44,6 +44,11 @@ public class Menu extends AbstractEntity /*implements Serializable*/ {
 
     public Menu() {
 
+    }
+
+    @Override
+    public int getId() {
+        return super.getId();
     }
 
     public String getDate() {

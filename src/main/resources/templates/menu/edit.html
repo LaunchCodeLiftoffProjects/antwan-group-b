@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+    <!-- <meta charset="UTF-8"/> -->
+    <title></title>
+<!-- </head> -->
+<body class="container">
+<header th:replace="fragments :: pageHeader"></header>
+    <h2 th:text="${title}">Family Organizer - Menu</h2>
+<form method="post" action="#"> <!-- th:action="@{menu/edit}"> -->
+    <div>
+    <label>Day of Week:
+    <select th:field="*{menu.date}">
+        <!-- <option value = "">* Select One *</option> -->
+        <option th:value = 7 th:text="Sunday"></option>
+        <option th:value = 1 th:text="Monday"></option>
+        <option th:value = 2 th:text="Tuesday"></option>
+        <option th:value = 3 th:text="Wednesday"></option>
+        <option th:value = 4 th:text="Thursday"></option>
+        <option th:value = 5 th:text="Friday"></option>
+        <option th:value = 6 th:text="Saturday"></option>
+    </select>
+      </label>
+    </div>
+   <!-- <div class="form-group">
+        <label>Select Day
+            <input class="form-control" th:field="${menu.date}" />
+        </label>
+        <p class="error" th:errors="${menu.mainCourse}"></p>
+    </div> -->
+    <input type="hidden" th:value="${menu.id}" name="id" />
+    <div class="form-group">
+        <label>Enter Main Course
+            <input class="form-control" th:field="${menu.mainCourse}" />
+        </label>
+        <p class="error" th:errors="${menu.mainCourse}"></p>
+    </div>
+    <div class="form-group">
+        <label>Enter Vegetable
+            <input class="form-control" th:field="${menu.vegetable}" />
+        </label>
+        <p class="error" th:errors="${menu.vegetable}"></p>
+    </div>
+    <div class="form-group">
+        <label>Enter Main Side
+            <input class="form-control" th:field="${menu.mainSide}" />
+        </label>
+        <p class="error" th:errors="${menu.mainSide}"></p>
+    </div>
+    <div class="form-group">
+        <label>Enter additional_side
+            <input class="form-control" th:field="${menu.additionalSide}" />
+        </label>
+        <p class="error" th:errors="${menu.additionalSide}"></p>
+    </div>
+    <div class="form-group">
+        <label>Enter Dessert
+            <input class="form-control" th:field="${menu.dessert}" />
+        </label>
+        <p class="error" th:errors="${menu.dessert}"></p>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Edit" />
+</form>
+</body>
+</html>
