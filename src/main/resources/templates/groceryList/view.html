@@ -28,14 +28,17 @@
       <tr>
          <td th:text="${item.name}">Add a new item</td>
          <td th:text="${item.quantity}"></td>
+         <form th:action="@{/groceryList/edit/{id}(id=${item.id})}">
+            <td><input type="submit" value="Edit Item" class="btn btn-outline-success"></td>
+         </form>
          <form th:action="@{'/groceryList/delete/' + ${item.id}}">
-            <td><input type="submit" value="Delete" class="btn btn-outline-danger"></td>
+            <td><input type="submit" value="Delete Item" class="btn btn-outline-danger"></td>
          </form>
       </tr>
    </th:block>
 </table>
 <div>
-   <p th:unless="${groceryList} and ${groceryList.size()}">Ut-Oh!! Your grocery list is empty! You should add some items.</p>
+   <p th:unless="${groceryList} and ${groceryList.size()}">Uh-Oh!! Your grocery list is empty! You should add some items.</p>
 </div>
 <br>
 <br>

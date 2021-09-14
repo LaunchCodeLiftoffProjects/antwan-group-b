@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("groceryList")
@@ -64,7 +65,7 @@ public class GroceryListController extends AuthenticationController {
                                             Model model) {
         return "groceryList/add";
     }
-//
+
     @PostMapping("/add")
     public Object processAddItemForm(@ModelAttribute @Valid GroceryList groceryList,
                                      Errors errors, HttpServletRequest request,
@@ -98,4 +99,33 @@ public class GroceryListController extends AuthenticationController {
         return"groceryList/view";
     }
 
+    @GetMapping("/edit/{Id}")
+    public String displayEditItemForm(Model model, @PathVariable("Id") int Id){
+
+        Optional groceryItem = groceryListRepository.findById(Id);
+        if (groceryItem.isPresent()) {
+            GroceryList individualItem = (GroceryList) groceryItem.get();
+            model.addAttribute("item", individualItem);
+            return "/groceryList/edit";
+        } else {
+            return "groceryList/view";
+        }
+    }
+
+    @PostMapping("edit/{Id}")
+    public String processEditItemForm(@PathVariable("Id") int Id, Model model, @Valid @ModelAttribute GroceryList item,
+                                      Errors errors) {
+        if (errors.hasErrors()) {
+            return "/groceryList/edit";
+        }
+        Optional<GroceryList> groceryItem = groceryListRepository.findById(Id);
+        if(groceryItem.isPresent()) {
+            GroceryList dbItem = groceryItem.get();
+            dbItem.setName(item.getName());
+            dbItem.setQuantity(item.getQuantity());
+
+            groceryListRepository.save(dbItem);
+        }
+        return"redirect:/groceryList/view";
+    }
 }
