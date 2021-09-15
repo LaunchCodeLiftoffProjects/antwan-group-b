@@ -11,25 +11,30 @@
 
 <body class="container">
 <div class="card-header">
-    <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
 </div>
 <!--<nav th:replace="fragments :: nav"></nav>-->
-<h1>Add Item to Grocery List</h1>
+<h1 th:text="${title}">Add Item to Grocery List</h1>
 
 <form method="post">
     <div class="form-group">
         <label>Enter new Grocery Item:
             <input class="form-control" type="text" th:field="${groceryList.name}"/>
         </label>
-<!--        <span class="error" th:errors="${groceryListItem.name}"></span>-->
     </div>
+    <p class="error" th:errors="${groceryList.name}"></p>
+
     <br>
     <div class="form-group">
         <label>Enter Quantity:
             <input class="form-control" type="number" th:field="${groceryList.quantity}" min="0" max="25"/>
         </label>
-<!--        <span class="error" th:errors="${groceryListItem.quantity}"></span>-->
     </div>
+    <p class="error" th:errors="${groceryList.quantity}"></p>
     <br>
     <div>
         <input type="submit" class="btn btn-primary" value="Add item">

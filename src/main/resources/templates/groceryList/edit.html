@@ -11,7 +11,11 @@
 
 <body class="container">
 <div class="card-header">
-   <a class="nav-link float-right" href="/home/logout">Logout</a>
+   <ul class="nav">
+      <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+   </ul>
 </div>
 <!--<nav th:replace="fragments :: nav"></nav>-->
 <h1>Edit Item in Grocery List</h1>
@@ -21,14 +25,13 @@
       <label>Grocery Item: <span th:text="${item.name}">Item Name</span>
          <input class="form-control" th:field="${item.name}"/>
       </label>
-      <!--        <span class="error" th:errors="${item.name}"></span>-->
    </div>
+   <p class="error" th:errors="${item.name}"></p>
    <br>
    <div class="form-group">
       <label>Edit Quantity:
          <input class="form-control" type="number" th:field="${item.quantity}" min="0" max="25"/>
       </label>
-      <!--        <span class="error" th:errors="${item.quantity}"></span>-->
    </div>
    <br>
    <div>

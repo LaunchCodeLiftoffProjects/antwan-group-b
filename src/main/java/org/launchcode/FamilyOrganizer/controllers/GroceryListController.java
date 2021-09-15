@@ -21,8 +21,6 @@ import java.util.Optional;
 @RequestMapping("groceryList")
 public class GroceryListController extends AuthenticationController {
 
-    private static List<GroceryList> groceryList = new ArrayList<>();
-
     @Autowired
     private GroceryListRepository groceryListRepository;
 
@@ -60,7 +58,7 @@ public class GroceryListController extends AuthenticationController {
     };
 
     @GetMapping("/add")
-    public String displayAddGroceryListForm(@ModelAttribute @Valid GroceryList groceryList,
+    public String displayAddGroceryListForm(@ModelAttribute GroceryList groceryList,
                                             Errors errors, HttpServletRequest request,
                                             Model model) {
         return "groceryList/add";
@@ -73,7 +71,7 @@ public class GroceryListController extends AuthenticationController {
 
         User user = getUserFromSession(request.getSession());
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Item to Grocery List");
+            model.addAttribute("title", "Add an Item to  Your Grocery List");
             return "/groceryList/add";
         }
 
@@ -113,7 +111,8 @@ public class GroceryListController extends AuthenticationController {
     }
 
     @PostMapping("edit/{Id}")
-    public String processEditItemForm(@PathVariable("Id") int Id, Model model, @Valid @ModelAttribute GroceryList item,
+    public String processEditItemForm(@PathVariable("Id") int Id, Model model,
+                                      @Valid @ModelAttribute GroceryList item,
                                       Errors errors) {
         if (errors.hasErrors()) {
             return "/groceryList/edit";
