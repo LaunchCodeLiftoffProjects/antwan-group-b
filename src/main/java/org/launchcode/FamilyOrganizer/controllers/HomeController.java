@@ -39,7 +39,7 @@ public class HomeController extends AuthenticationController{
         return "/logout";
     }
 
-    @GetMapping("view")
+    @GetMapping("/view")
     public String home(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
         int userId = user.getId();
@@ -61,7 +61,7 @@ public class HomeController extends AuthenticationController{
         String strDate = f.format(new Date());
         model.addAttribute("currentdate",strDate);
 
-        return "home/view";
+        return "/home/view";
     }
 
     @GetMapping("events/displayEvent")

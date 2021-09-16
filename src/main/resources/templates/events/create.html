@@ -4,7 +4,7 @@
 </head>
 <body class="container">
 <div class="card-header">
-    <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <nav th:replace="fragments :: nav"></nav>
     <tr><th>Create Event</th><th></th></tr>
 </div>
 
@@ -18,14 +18,14 @@
             <div class="form-group">
                 <label>Date
                 <input type="date" th:field="${event.eventDetails.date}" class="form-control"></input>
-          <!--          th:value="date"  the above th:value was originaglly th:field -->
+
                 </label>
                 <p class="error" th:errors="${event.eventDetails.date}"></p>
             </div>
             <div class="form-group">
                 <label>Start Time
                     <input type="time" th:field="${event.eventDetails.time}" class="form-control"></input>
-                    <!--      th:value="date"  the above th:value was originaglly th:field -->
+
                 </label>
                 <p class="error" th:errors="${event.eventDetails.time}"></p>
             </div>

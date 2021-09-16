@@ -4,7 +4,7 @@
 </head>
 <body class="container">
 <div class="card-header">
-        <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <nav th:replace="fragments :: nav"></nav>
         <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
         <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
 </div>
