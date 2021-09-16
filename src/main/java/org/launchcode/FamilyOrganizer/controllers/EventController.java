@@ -31,14 +31,15 @@ public class EventController extends AuthenticationController{
     @Autowired
     EventRepository eventRepository;
 
-    @InitBinder
+    @InitBinder(value = "date")
     public void initBinder(WebDataBinder binder, WebRequest request) {
         //convert the date Note that the conversion here should always be in the same format as the string passed in, e.g. 2015-9-9 should be yyyy-MM-dd
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// CustomDateEditor is a custom date editor
+
     }
 
-    @InitBinder
+    @InitBinder(value = "time")
     public void timeBinder(WebDataBinder binder, WebRequest request) {
         //convert the date Note that the conversion here should always be in the same format as the string passed in, e.g. 2015-9-9 should be yyyy-MM-dd
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
@@ -67,7 +68,7 @@ public class EventController extends AuthenticationController{
     }
 
     @PostMapping("/create")
-    public Object processCreateEventForm(@ModelAttribute("date")Date date, @ModelAttribute("time")Date time, Event event,
+    public Object processCreateEventForm(@ModelAttribute Date date, @ModelAttribute Date time, Event event,
                                          Errors errors, Model model, HttpServletRequest request){
         User user = getUserFromSession(request.getSession());
         if(errors.hasErrors()){
