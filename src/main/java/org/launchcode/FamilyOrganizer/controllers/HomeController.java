@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("home")
@@ -48,9 +45,22 @@ public class HomeController extends AuthenticationController{
         model.addAttribute("title1", UserName);
 
         //Events
-        //events.add(new Event("8:30 AM Dr Appointment","Mom"));
         model.addAttribute("title", "All Events");
-        model.addAttribute("events", eventRepository.findByUserId(userId));//this will need to be findByUserId, I think
+        List<Event> event1 = (List<Event>) eventRepository.findByUserId(userId);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date todaysDate = new Date();
+
+        System.out.println(formatter.format(todaysDate));
+
+        List<Event> todaysEvents = new ArrayList<Event>();
+        for(Event element : event1) {
+            System.out.println(formatter.format(element.getEventDetails().getDate()));
+            if(formatter.format(element.getEventDetails().getDate()).equals(formatter.format(todaysDate))){
+                todaysEvents.add(element);
+            }
+        }
+        model.addAttribute("events", todaysEvents);
+
         //To DO List
         todolist.add(new ToDoList("Laundry","Dad"));
         model.addAttribute("title2","To Do List");
