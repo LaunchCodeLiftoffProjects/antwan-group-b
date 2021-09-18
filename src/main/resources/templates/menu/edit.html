@@ -1,65 +1,97 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-    <!-- <meta charset="UTF-8"/> -->
-    <title></title>
-<!-- </head> -->
-<body class="container">
-<header th:replace="fragments :: pageHeader"></header>
-    <h2 th:text="${title}">Family Organizer - Menu</h2>
-<form method="post" action="#"> <!-- th:action="@{menu/edit}"> -->
-    <div>
-    <label>Day of Week:
-    <select th:field="*{menu.date}">
-        <!-- <option value = "">* Select One *</option> -->
-        <option th:value = 7 th:text="Sunday"></option>
-        <option th:value = 1 th:text="Monday"></option>
-        <option th:value = 2 th:text="Tuesday"></option>
-        <option th:value = 3 th:text="Wednesday"></option>
-        <option th:value = 4 th:text="Thursday"></option>
-        <option th:value = 5 th:text="Friday"></option>
-        <option th:value = 6 th:text="Saturday"></option>
-    </select>
-      </label>
-    </div>
-   <!-- <div class="form-group">
-        <label>Select Day
-            <input class="form-control" th:field="${menu.date}" />
-        </label>
-        <p class="error" th:errors="${menu.mainCourse}"></p>
-    </div> -->
-    <input type="hidden" th:value="${menu.id}" name="id" />
-    <div class="form-group">
-        <label>Enter Main Course
-            <input class="form-control" th:field="${menu.mainCourse}" />
-        </label>
-        <p class="error" th:errors="${menu.mainCourse}"></p>
-    </div>
-    <div class="form-group">
-        <label>Enter Vegetable
-            <input class="form-control" th:field="${menu.vegetable}" />
-        </label>
-        <p class="error" th:errors="${menu.vegetable}"></p>
-    </div>
-    <div class="form-group">
-        <label>Enter Main Side
-            <input class="form-control" th:field="${menu.mainSide}" />
-        </label>
-        <p class="error" th:errors="${menu.mainSide}"></p>
-    </div>
-    <div class="form-group">
-        <label>Enter additional_side
-            <input class="form-control" th:field="${menu.additionalSide}" />
-        </label>
-        <p class="error" th:errors="${menu.additionalSide}"></p>
-    </div>
-    <div class="form-group">
-        <label>Enter Dessert
-            <input class="form-control" th:field="${menu.dessert}" />
-        </label>
-        <p class="error" th:errors="${menu.dessert}"></p>
-    </div>
-    <input type="submit" class="btn btn-primary" value="Edit" />
-</form>
-</body>
+
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel = "stylesheet" th:href="@{/styles.css}" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <title>Family Organizer: Edit Menu</title>
+    </head>
+
+    <body class="container">
+    <br>
+
+        <div class="card-header">
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/menu/add">Add Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="/menu/view">Menu</a></li>
+                <li class="nav-item"><a class="nav-link">Events</a></li>
+                <li class="nav-item"><a class="nav-link">Grocery List</a></li>
+                <li class="nav-item"><a class="nav-link">To Do List</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+        <br>
+
+        <h1>Family Organizer: Edit Menu</h1>
+        <br>
+
+        <form method="post" action="#">
+
+            <div>
+                <label>Day of Week:
+                    <select th:field="*{menu.date}">
+                        <option th:value = 7 th:text="Sunday"></option>
+                        <option th:value = 1 th:text="Monday"></option>
+                        <option th:value = 2 th:text="Tuesday"></option>
+                        <option th:value = 3 th:text="Wednesday"></option>
+                        <option th:value = 4 th:text="Thursday"></option>
+                        <option th:value = 5 th:text="Friday"></option>
+                        <option th:value = 6 th:text="Saturday"></option>
+                    </select>
+                </label>
+            </div>
+            <br>
+
+            <input type="hidden" th:value="${menu.id}" name="id" />
+
+            <div class="form-group">
+                <label>Enter Main Course
+                    <input class="form-control" th:field="${menu.mainCourse}" />
+                </label>
+                <p class="error" th:errors="${menu.mainCourse}"></p>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>Enter Vegetable
+                    <input class="form-control" th:field="${menu.vegetable}" />
+                </label>
+                <p class="error" th:errors="${menu.vegetable}"></p>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>Enter Main Side
+                    <input class="form-control" th:field="${menu.mainSide}" />
+                </label>
+                <p class="error" th:errors="${menu.mainSide}"></p>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>Enter additional_side
+                    <input class="form-control" th:field="${menu.additionalSide}" />
+                </label>
+                <p class="error" th:errors="${menu.additionalSide}"></p>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>Enter Dessert
+                    <input class="form-control" th:field="${menu.dessert}" />
+                </label>
+                <p class="error" th:errors="${menu.dessert}"></p>
+            </div>
+            <br>
+
+            <input type="submit" class="btn btn-primary" value="Edit" />
+
+        </form>
+
+    </body>
+
 </html>

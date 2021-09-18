@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-//import javax.servlet.http.HttpServletRequest;
-//import javax.validation.Valid;
 
 @Controller
 @RequestMapping("menu")
@@ -88,28 +86,7 @@ public class MenuController extends AuthenticationController{
             return "/menu/view";
         }
     }
-//        Menu menuToEdit = Menu.getById(id);
-//        model.addAttribute("title", "menuToEdit");
-//        String title = "Edit Menu" + menuToEdit.getDate() + menuToEdit.getMainCourse() + menuToEdit.getVegetable() +
-//                menuToEdit.getMainSide() + menuToEdit.getAdditionalSide() + menuToEdit.getDessert() + " (id=" +
-//                menuToEdit.getId() + ")";
-//        model.addAttribute("title", title );
-//        return "menu/edit";
-//    }
-//
-//    @PostMapping("/edit")
-//    public String processMenuEditForm(int id, String date, String mainCourse, String vegetable, String mainSide,
-//                                      String additionalSide, String dessert) {
-//        Menu menuToEdit = Menu.getByid(id);
-//        menuToEdit.setDate(date);
-//        menuToEdit.setMainCourse(mainCourse);
-//        menuToEdit.setVegetable(vegetable);
-//        menuToEdit.setMainSide(mainSide);
-//        menuToEdit.setAdditionalSide(additionalSide);
-//        menuToEdit.setDessert(dessert);
-//        return "redirect: menu/view";
-//    }
-//
+
         @PostMapping("/edit/{id}")
 
         public String processMenuEditForm(@PathVariable("id") int id, Model model, @Valid @ModelAttribute Menu menu,
