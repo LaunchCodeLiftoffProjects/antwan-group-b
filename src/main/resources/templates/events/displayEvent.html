@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: pageHeader"></header>
+<div class="card-header">
+  <nav th:replace="fragments :: nav"></nav>
+  <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
+  <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+</div>
+</br>
+<table class="table table-striped">
+  <tr>
+    <th>Event Name</th>
+    <td th:text="${event.name}"></td>
+  </tr>
+  <tr>
+    <th>Date</th>
+    <td th:text="${#dates.format(event.EventDetails.date, 'MM-dd-yyyy')}"></td>
+  </tr>
+  <tr>
+    <th>Start Time</th>
+    <td th:text="${#dates.format(event.EventDetails.time, 'h:mm a')}"></td>
+  </tr>
+  <tr>
+    <th>Location</th>
+    <td th:text="${event.eventDetails.location}"></td>
+  </tr>
+  <tr>
+    <th>Who's going</th>
+    <td  th:text="${event.eventDetails.name}"></td>
+  </tr>
+  <tr>
+    <th>Notes</th>
+    <td th:text="${event.eventDetails.notes}"></td>
+  </tr>
+
+</table>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<div class="card-header">
+    <a class="nav-link float-left" href="/home/view">Home</a>
+    <a class="nav-link float-right" href="/home/logout">Logout</a>
+</div>
+</br>
+    <table class="table table-striped" style="width:45%;display:inline-block">
+        <thead>
+        <tr><th>To Do List</th><th></th><th></th><th></th></tr>
+        <tr>
+            <th>Who</th>
+            <th>To-Do List</th>
+            <th>Start Date</th>
+            <th></th>
+            <th>End Date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tr th:each="todolist : ${todolist}">
+            <td th:text="${todolist.member}"></td>
+            <td th:text="${todolist.name}"></td>
+            <td th:text="${todolist.start}"></td>
+            <td th:text="${todolist.starttime}"></td>
+            <td th:text="${todolist.enddate}"></td>
+            <td th:text="${todolist.endtime}"></td>
+            <form th:action="@{'/todolist/delete/' + ${todolist.id}}">
+            <td><input type="submit" class="btn btn-primary" value="Delete" /></td>
+            </form>
+        </tr>
+    </table>
+    </br>
+    <form th:action="@{/todolist/add}">
+    <input type="submit" class="btn btn-primary" value="Add To List"/>
+    </form>
+</body>
+</html>

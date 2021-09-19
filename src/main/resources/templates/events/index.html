@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: pageHeader"></header>
+<nav th:replace="fragments :: nav"></nav>
+
+<!--where naviagation is, used to be pageHeader -->
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>All Events</th>
+  </tr>
+  </thead>
+  <tr th:each="event : ${events}">
+    <td><a th:href="'/events/displayEvent/?eventId=' + ${event.id}" th:text="${event.name}"></a></td>
+  </tr>
+</table>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

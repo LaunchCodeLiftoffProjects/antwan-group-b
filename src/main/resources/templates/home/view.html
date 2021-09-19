@@ -4,11 +4,12 @@
 </head>
 <body class="container">
 <div class="card-header">
-        <a class="nav-link float-right" href="/home/logout">Logout</a>
         <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
-        <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)} + ' Family'"></h1>
+        <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+    <a class="nav-link float-right" href="/home/logout">Logout</a>
 </div>
 </br>
+
 <table class="table table-striped" style="width:45%;display:inline-block">
     <thead>
     <tr><th>All Events</th><th></th></tr>
@@ -18,33 +19,40 @@
     </tr>
     </thead>
     <tr th:each="event : ${events}">
-        <td th:text="${event.member}"></td>
-        <td th:text="${event.name}"></td>
+        <td th:text="${event.eventDetails.name}"></td>
+        <td><a th:href="'/events/displayEvent/?eventId='+ ${event.id}" th:text="${event.name}"></a></td>
     </tr>
 </table>
 
 <table class="table table-striped" style="width:45%;display:inline-block">
     <thead>
-    <tr><th>To Do List</th><th></th></tr>
+    <tr><th>To Do List</th><th></th><th></th></tr>
     <tr>
         <th>Who</th>
         <th>To-Do List</th>
+        <th>Start Date</th>
+        <th></th>
+        <th>End Date</th>
+        <th></th>
     </tr>
     </thead>
     <tr th:each="todolist : ${todolist}">
         <td th:text="${todolist.member}"></td>
         <td th:text="${todolist.name}"></td>
+        <td th:text="${todolist.start}"></td>
+        <td th:text="${todolist.starttime}"></td>
+        <td th:text="${todolist.enddate}"></td>
+        <td th:text="${todolist.endtime}"></td>
     </tr>
 </table>
 
 <ul class="card-footer">
     <ul class="nav">
-    <li class="nav-item"><a class="nav-link" href="/events">To Do List</a></li>
-    <li class="nav-item"><a class="nav-link" href="/menu/view">Menu</a></li> <!-- Updated to access Menu -->
-    <li class="nav-item"><a class="nav-link" href="/groceryList/view">Grocery List</a></li>
-    <li class="nav-item"><a class="nav-link" href="/events">Add Event</a></li>
-    <li class="nav-item"><a class="nav-link" href="/events">Add Task</a></li>
-    <!-- <li class="nav-item"><a class="nav-link" href="/menu/add">Add Menu</a></li> <!-- Added line to access menu -->
+    <li class="nav-item"><a class="nav-link" href="/home/todolist">To Do List</a></li>
+    <li class="nav-item"><a class="nav-link" href="/home/grocerylist">Grocery List</a></li>
+    <li class="nav-item"><a class="nav-link" href="/home/events">Events</a></li>
+    <li class="nav-item"><a class="nav-link" href="/home/menu">Menu</a></li>
+
     </ul>
 </ul>
 </body>
