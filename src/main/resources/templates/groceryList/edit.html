@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+   <meta charset="UTF-8"/>
+   <title>Family Organizer: Grocery List</title>
+   <link rel = "stylesheet" th:href="@{/styles.css}" />
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+
+<body class="container">
+<div class="card-header">
+   <ul class="nav">
+      <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+   </ul>
+</div>
+<!--<nav th:replace="fragments :: nav"></nav>-->
+<h1>Edit Item in Grocery List</h1>
+
+<form method="post" action="#">
+   <div class="form-group">
+      <label>Grocery Item: <span th:text="${item.name}">Item Name</span>
+         <input class="form-control" th:field="${item.name}"/>
+      </label>
+   </div>
+   <p class="error" th:errors="${item.name}"></p>
+   <br>
+   <div class="form-group">
+      <label>Edit Quantity:
+         <input class="form-control" type="number" th:field="${item.quantity}" min="0" max="25"/>
+      </label>
+   </div>
+   <br>
+   <div>
+      <input type="submit" class="btn btn-primary" value="Update item">
+<!--      <input type="hidden" th:value="${item.id}" name="itemId"/>-->
+   </div>
+
+</form>
+
+
+
+</body>
+</html>

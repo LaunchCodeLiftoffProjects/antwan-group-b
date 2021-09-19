@@ -14,7 +14,9 @@
         <tr>
             <th>Who</th>
             <th>To-Do List</th>
-            <th>Start Time</th>
+            <th>Start Date</th>
+            <th></th>
+            <th>End Date</th>
             <th></th>
         </tr>
         </thead>
@@ -22,6 +24,9 @@
             <td th:text="${todolist.member}"></td>
             <td th:text="${todolist.name}"></td>
             <td th:text="${todolist.start}"></td>
+            <td th:text="${todolist.starttime}"></td>
+            <td th:text="${todolist.enddate}"></td>
+            <td th:text="${todolist.endtime}"></td>
             <form th:action="@{'/todolist/delete/' + ${todolist.id}}">
             <td><input type="submit" class="btn btn-primary" value="Delete" /></td>
             </form>

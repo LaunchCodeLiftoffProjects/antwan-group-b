@@ -14,7 +14,7 @@
 <body>
 <nav th:fragment="nav">
    <ul class="nav">
-      <li class="nav-item"><a class="nav-link" href="">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
       <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 
@@ -22,4 +22,15 @@
 </nav>
 
 </body>
+<footer th:fragment="footer">
+   <a th:href="@{/events}">To Do List</a>
+
+   <a th:href="@{/events}">Monthly Calendar</a>
+
+   <a th:href="@{/events}">Grocery List</a>
+
+   <a th:href="@{/events/create}">Add Event</a>
+
+   <a th:href="@{/events}">Add Task</a>
+</footer>
 </html>
