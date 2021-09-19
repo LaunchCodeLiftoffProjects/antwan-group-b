@@ -1,24 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Family Organizer: Grocery List</title>
-    <link rel = "stylesheet" th:href="@{/styles.css}" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-</head>
+<head th:insert ="fragments :: head"></head>
 
+<div class="card-header">
+    <nav th:insert="fragments :: nav"></nav>
+    <h1>Add Item to Grocery List</h1>
+</div>
 
 <body class="container">
-<div class="card-header">
-    <ul class="nav">
-        <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-    </ul>
-</div>
-<!--<nav th:replace="fragments :: nav"></nav>-->
-<h1 th:text="${title}">Add Item to Grocery List</h1>
+
+<!-- <h1 th:text="${title}">Add Item to Grocery List</h1>  -->
 
 <form method="post">
     <div class="form-group">
