@@ -1,10 +1,14 @@
 package org.launchcode.FamilyOrganizer.models;
 
-import com.sun.istack.NotNull;
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import javax.persistence.Entity;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
@@ -17,10 +21,14 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     @NotBlank
     @Size(message="Must be at least 3 characters long")
     private String familyName;
+
+//    @OneToMany
+//    private List<GroceryListItem> groceryListItems;
+
 
     public User() {}
 
@@ -28,6 +36,7 @@ public class User extends AbstractEntity {
         this.username = username;
         this.pwHash = encoder.encode(password);
         this.familyName = familyName;
+;
     }
 
     public String getFamilyName() {
@@ -46,4 +55,11 @@ public class User extends AbstractEntity {
         return encoder.matches(password, pwHash);
     }
 
+//    public List<GroceryListItem> getGroceryListItems() {
+//        return groceryListItems;
+//    }
+//
+//    public void setGroceryListItems(List<GroceryListItem> groceryListItems) {
+//        this.groceryListItems = groceryListItems;
+//    }
 }
