@@ -15,10 +15,8 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 
 
 @Controller
@@ -30,6 +28,8 @@ public class EventController extends AuthenticationController{
 
     @Autowired
     EventRepository eventRepository;
+
+
 
     @InitBinder(value = "date")
     public void initBinder(WebDataBinder binder, WebRequest request) {
@@ -61,12 +61,21 @@ public class EventController extends AuthenticationController{
             Date todaysDate = new Date();
             try {
                 event1 = (List<Event>) eventRepository.findByUserId(userId);
+
             }
             catch(Exception e)
             {
 
             }
-            model.addAttribute("events", event1);
+
+            Collections.sort(event1, new Comparator<Event>(){
+                public int compare(Event date1, Event date2){
+                    if(date1.eventDetails.getDate()== null || date2.eventDetails.getDate()== null)
+                        return 0;
+                    return date1.eventDetails.getDate().compareTo(date2.getEventDetails().getDate());
+                }
+            });
+        model.addAttribute("events", event1);
         return "events/index";
     }
 
