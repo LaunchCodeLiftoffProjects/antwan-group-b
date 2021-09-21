@@ -11,21 +11,15 @@
     </head>
     <br>
 
-    <body class="container">
-        <div class="card-header">
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/menu/add">Add Menu</a></li>
-                <li class="nav-item"><a class="nav-link">Events</a></li>
-                <li class="nav-item"><a class="nav-link">Grocery List</a></li>
-                <li class="nav-item"><a class="nav-link">To Do List</a></li>
-                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-            </ul>
-        </div>
-        <br>
+<body class="container">
+    <br>
+    <div class="card-header">
+        <section th:replace="fragments :: nav"></section>
+    </div>
+    <br>
 
-        <h1>Family Organizer: Menu</h1>
-        <br>
+    <h1>Family Organizer: Menu</h1>
+    <br>
 
     <!-- <main>
         <div class="column1">
@@ -66,6 +60,8 @@
              </th:block>
 
         </ul>
+
+        <div th:replace="fragments :: jsBoot"></div>
 
     </body>
 

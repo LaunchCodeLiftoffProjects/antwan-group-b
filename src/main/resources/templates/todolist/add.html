@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
+<head th:replace="fragments :: head"></head>
+
+
 <body class="container">
+    <br>
 <div class="card-header">
-    <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <section th:replace="fragments :: nav"></section>
 </div>
-</br>
+<br>
+
+<h1 th:text="${title}">Add to your To Do List</h1>
+
+
 <form method="post">
     <div class="form-group">
         <label>To Do
@@ -49,5 +55,8 @@
     </br>
     <input type="submit" class="btn btn-primary" value="Add To List"/>
 </form>
+
+    <div th:replace="fragments :: jsBoot"></div>
+
 </body>
 </html>

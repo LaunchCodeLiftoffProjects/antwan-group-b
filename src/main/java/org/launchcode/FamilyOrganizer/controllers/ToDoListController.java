@@ -59,7 +59,7 @@ public class ToDoListController extends AuthenticationController{
     public Object getToDoList(@ModelAttribute @Valid ToDoList toDoList,
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
-        model.addAttribute("title", "Add to To Do List");
+        model.addAttribute("title", "Your To Do List");
         User user = getUserFromSession(request.getSession());
         int userId = user.getId();
         List<ToDoList> toDoList1 = (List<ToDoList>) toDoListRepository.findByUserId(userId);
@@ -72,7 +72,7 @@ public class ToDoListController extends AuthenticationController{
     public String processToDoList(@ModelAttribute @Valid ToDoList toDoList,
                               Errors errors, HttpServletRequest request,
                               Model model) {
-        model.addAttribute("title", "Add to To Do List");
+        model.addAttribute("title", "Your To Do List");
         return "redirect:/todolist/add";
     }
 
@@ -80,6 +80,7 @@ public class ToDoListController extends AuthenticationController{
     public String getToDoListForm(@ModelAttribute @Valid ToDoList toDoList,
                                       Errors errors, HttpServletRequest request,
                                       Model model) {
+        model.addAttribute("title", "Add to your To Do List");
         return "todolist/add";
     }
 
@@ -90,7 +91,7 @@ public class ToDoListController extends AuthenticationController{
                                           Model model) throws ParseException {
         User user = getUserFromSession(request.getSession());
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add to To Do List");
+            model.addAttribute("title", "Add to your To Do List");
             return "todolist/add";
         }
 
@@ -105,7 +106,7 @@ public class ToDoListController extends AuthenticationController{
                               Errors errors, HttpServletRequest request,
                               Model model,@PathVariable int listId) {
         toDoListRepository.deleteById(listId);
-        model.addAttribute("title", "Add to To Do List");
+        model.addAttribute("title", "Your To Do List");
         User user = getUserFromSession(request.getSession());
         int userId = user.getId();
         List<ToDoList> toDoList1 = (List<ToDoList>) toDoListRepository.findByUserId(userId);

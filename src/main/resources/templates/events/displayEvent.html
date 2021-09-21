@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+
+
 <body class="container">
+<br>
+<div class="card-header">
+  <section th:replace="fragments :: nav"></section>
+</div>
+<br>
 
 <header th:replace="fragments :: pageHeader"></header>
 <div class="card-header">
@@ -38,5 +45,8 @@
 
 </table>
 <footer th:replace="fragments :: footer"></footer>
+
+<div th:replace="fragments :: jsBoot"></div>
+
 </body>
 </html>

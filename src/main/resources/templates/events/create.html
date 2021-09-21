@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
+<head th:replace="fragments :: head"></head>
+
+
 <body class="container">
+<br>
 <div class="card-header">
-    <nav th:replace="fragments :: nav"></nav>
+    <section th:replace="fragments :: nav"></section>
+</div>
+<br>
+
+
+<div class="card-header">
     <tr><th>Create Event</th><th></th></tr>
 </div>
 
@@ -55,5 +62,7 @@
             </div>
             <footer th:replace="fragments :: footer"></footer>
         </form>
+
+        <div th:replace="fragments :: jsBoot"></div>
     </body>
 </html>

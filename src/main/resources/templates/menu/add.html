@@ -10,19 +10,12 @@
         <title>Family Organizer: Edit Menu</title>
     </head>
 
-    <body class="container">
+<body class="container">
     <br>
-        <div class="card-header">
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/menu/view">Menu</a></li>
-                <li class="nav-item"><a class="nav-link">Events</a></li>
-                <li class="nav-item"><a class="nav-link">Grocery List</a></li>
-                <li class="nav-item"><a class="nav-link">To Do List</a></li>
-                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-            </ul>
-        </div>
-        <br>
+    <div class="card-header">
+        <section th:replace="fragments :: nav"></section>
+    </div>
+    <br>
 
         <h1>Family Organizer: Add Menu</h1>
         <br>
@@ -86,6 +79,8 @@
             <input type="submit" class="btn btn-primary" value="Add" />
 
         </form>
+
+    <div th:replace="fragments :: jsBoot"></div>
 
     </body>
 

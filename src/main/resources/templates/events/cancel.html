@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <nav th:replace="fragments :: nav"></nav>
 </head>
+
 <body class="container">
+<br>
+<div class="card-header">
+  <section th:replace="fragments :: nav"></section>
+</div>
+<br>
+
   <form method="post">
 
 
@@ -20,5 +26,8 @@
 
     <input type="submit" value="Cancel" class="btn btn-danger">
 </form>
+
+<div th:replace="fragments :: jsBoot"></div>
+
 </body>
 </html>

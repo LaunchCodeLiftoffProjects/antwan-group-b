@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+
+
 <body class="container">
+<br>
+<div class="card-header">
+  <section th:replace="fragments :: nav"></section>
+</div>
+<br>
 
 <header th:replace="fragments :: pageHeader"></header>
 <nav th:replace="fragments :: nav"></nav>
 
-<!--where naviagation is, used to be pageHeader -->
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -18,5 +25,8 @@
   </tr>
 </table>
 <footer th:replace="fragments :: footer"></footer>
+
+<div th:replace="fragments :: jsBoot"></div>
+
 </body>
 </html>
