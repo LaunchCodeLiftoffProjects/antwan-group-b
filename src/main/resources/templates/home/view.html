@@ -39,10 +39,10 @@
     <tr th:each="todolist : ${todolist}">
         <td th:text="${todolist.member}"></td>
         <td th:text="${todolist.name}"></td>
-        <td th:text="${todolist.start}"></td>
-        <td th:text="${todolist.starttime}"></td>
-        <td th:text="${todolist.enddate}"></td>
-        <td th:text="${todolist.endtime}"></td>
+        <td th:text="${#dates.format(todolist.start, 'MM-dd-yyyy')}"></td>
+        <td th:text="${#dates.format(todolist.starttime, 'h:mm a')}"></td>
+        <td th:text="${#dates.format(todolist.enddate, 'MM-dd-yyyy')}"></td>
+        <td th:text="${#dates.format(todolist.endtime, 'h:mm a')}"></td>
     </tr>
 </table>
 

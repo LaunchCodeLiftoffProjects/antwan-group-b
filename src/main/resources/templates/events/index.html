@@ -11,10 +11,23 @@
   <thead>
   <tr>
     <th>All Events</th>
+  <tr>
+    <th>Event</th>
+    <th>Who's Going</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Location</th>
+    <th>Notes</th>
+  </tr>
   </tr>
   </thead>
   <tr th:each="event : ${events}">
-    <td><a th:href="'/events/displayEvent/?eventId=' + ${event.id}" th:text="${event.name}"></a></td>
+    <td><a th:text="${event.name}"></a></td>
+    <td><a th:text="${event.eventDetails.name}"></a></td>
+    <td><a th:text="${#dates.format(event.EventDetails.date, 'MM-dd-yyyy')}"></a></td>
+    <td><a th:text="${#dates.format(event.EventDetails.time, 'h:mm a')}"></a></td>
+    <td><a th:text="${event.eventDetails.location}"></a></td>
+    <td><a th:text="${event.eventDetails.notes}"></a></td>
   </tr>
 </table>
 <footer th:replace="fragments :: footer"></footer>
