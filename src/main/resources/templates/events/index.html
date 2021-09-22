@@ -14,7 +14,19 @@
 
 <!--where naviagation is, used to be pageHeader -->
 <table class="table table-striped">
-
+  <thead>
+  <tr>
+    <th>All Events</th>
+  <tr>
+    <th>Event</th>
+    <th>Who's Going</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Location</th>
+    <th>Notes</th>
+  </tr>
+  </tr>
+  </thead>
   <tr th:each="event : ${events}">
     <td><a th:href="'/events/displayEvent/?eventId=' + ${event.id}" th:text="${event.name}"></a></td>
   </tr>
