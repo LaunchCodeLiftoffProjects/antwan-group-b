@@ -35,6 +35,9 @@
     <th>Notes</th>
     <td th:text="${event.eventDetails.notes}"></td>
   </tr>
+  <form th:action="@{'/events/cancel/' + ${event.id}}">
+    <td><input type="submit" class="btn btn-primary" value="Cancel" /></td>
+  </form>
 
 </table>
 <footer th:replace="fragments :: footer"></footer>

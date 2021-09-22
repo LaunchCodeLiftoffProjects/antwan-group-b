@@ -28,6 +28,13 @@
     <td><a th:text="${#dates.format(event.EventDetails.time, 'h:mm a')}"></a></td>
     <td><a th:text="${event.eventDetails.location}"></a></td>
     <td><a th:text="${event.eventDetails.notes}"></a></td>
+    <form th:action="@{'/events/edit/' + ${event.id}}">
+      <td><input type="submit" value="Edit Event" class="btn btn-outline-success"></td>
+    </form>
+    <form th:action="@{'/events/cancel/' + ${event.id}}">
+      <td><input type="submit" class="btn btn-primary" value="Cancel" /></td>
+    </form>
+
   </tr>
 </table>
 <footer th:replace="fragments :: footer"></footer>

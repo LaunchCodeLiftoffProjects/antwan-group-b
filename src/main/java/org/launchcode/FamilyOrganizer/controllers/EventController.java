@@ -20,7 +20,6 @@ import java.util.*;
 
 
 @Controller
-//@Scope("session")
 @RequestMapping("events")
 public class EventController extends AuthenticationController{
 
@@ -53,7 +52,7 @@ public class EventController extends AuthenticationController{
     }
     @GetMapping
     public String displayEvents(@ModelAttribute @Valid Event event, Errors errors, HttpServletRequest request,  Model model) {
-            model.addAttribute("title", "All Events");
+            model.addAttribute("event", "All Events");
             User user = getUserFromSession(request.getSession());
             int userId = user.getId();
             List<Event> event1 = null;
@@ -99,23 +98,67 @@ public class EventController extends AuthenticationController{
         return "redirect:";
     }
 
-    @GetMapping("/cancel")
-    public String displayCancelEventForm(Model model) {
-        model.addAttribute("title", "Cancel Event");
-        model.addAttribute("events", eventRepository.findAll());
-        return "events/cancel";
-    }
 
-    @PostMapping("/cancel")
-    public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
+    @GetMapping("/cancel/{eventId}")
+    public Object processDeleteEventsForm(@ModelAttribute @Valid Event event, Errors errors, HttpServletRequest request,
+                                          Model model, @PathVariable int eventId) {
+        eventRepository.deleteById(eventId);
+        model.addAttribute("title", "All Events");
+        User user = getUserFromSession(request.getSession());
+        List<Event> event2 = (List<Event>) eventRepository.findByUserId(user.getId());
 
-        if (eventIds != null) {
-            for (int id : eventIds) {
-                eventRepository.deleteById(id);
-            }
+        try {
+            event2 = (List<Event>) eventRepository.findByUserId(user.getId());
+
+        }
+        catch(Exception e)
+        {
+
         }
 
-        return "redirect:";
+        Collections.sort(event2, new Comparator<Event>(){
+            public int compare(Event date1, Event date2){
+                if(date1.eventDetails.getDate()== null || date2.eventDetails.getDate()== null)
+                    return 0;
+                return date1.eventDetails.getDate().compareTo(date2.getEventDetails().getDate());
+            }
+        });
+        model.addAttribute("events", event2);
+        return "/events/index";
+    }
+
+    @GetMapping("/edit/{eventId}")
+    public String displayEditEventForm(Model model, @PathVariable int eventId){
+
+        Optional eventdetail = eventRepository.findById(eventId);
+        if (eventdetail.isPresent()) {
+            Event individualdetail = (Event) eventdetail.get();
+            model.addAttribute("item", individualdetail);
+            return "/events/edit";
+        } else {
+            return "/events/index";
+        }
+    }
+
+    @PostMapping("/edit/{eventId}")
+    public String processEditEventForm(@PathVariable int eventId, Model model,
+                                      @Valid @ModelAttribute Event item,
+                                      Errors errors) {
+        if (errors.hasErrors()) {
+            return "/events/edit";
+        }
+        Optional<Event> eventdetails = eventRepository.findById(eventId);
+        if(eventdetails.isPresent()) {
+            Event dbItem = eventdetails.get();
+            dbItem.setName(item.getName());
+            dbItem.eventDetails.setName(item.eventDetails.getName());
+            dbItem.eventDetails.setDate(item.eventDetails.getDate());
+            dbItem.eventDetails.setTime(item.eventDetails.getTime());
+            dbItem.eventDetails.setLocation(item.eventDetails.getLocation());
+            dbItem.eventDetails.setNotes(item.eventDetails.getNotes());
+            eventRepository.save(dbItem);
+        }
+        return "redirect:/events";
     }
 
     @GetMapping("/displayEvent")
