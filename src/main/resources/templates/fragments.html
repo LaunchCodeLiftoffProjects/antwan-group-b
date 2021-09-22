@@ -2,22 +2,51 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:fragment="head">
    <meta charset="UTF-8"/>
+
    <title>Family Organizer</title>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-         crossorigin="anonymous"/>
+         crossorigin="anonymous">
+   <style>
 
-   <link rel = "stylesheet" th:href="@{/static/styles.css}" />
-<!--   <style>-->
-<!--      h2{-->
-<!--         color:blue;-->
-<!--      }-->
-<!--   </style>-->
-</head>
+   .container{
+       background-color: #F7F6F2;
+       align-content: space-around;
+       justify-content: center;
+   }
+
+   .error{
+       color: red;
+       font-size: 1.5em;
+       font-weight: 500;
+   }
+
+   h1 {
+       font-family: "Montserrat";
+       font-size: 3.5em;
+       color: #4B6587;
+       font-weight: 500;
+   }
+
+   h2{
+      font-family: "Montserrat";
+      font-size: 2.5em;
+      color: #4B6587;
+      font-weight: 500;
+   }
+
+   label, p{
+      font-size: 1em;
+      color: #4B6587;
+      font-weight: 500;
+   }
+
+
+   </style>
 
    <h1 th:fragment="pageHeader">Family Organizer</h1>
 
-<body>
+<body class="container">
 <section th:fragment="nav">
       <ul class="nav">
          <li class="nav-item"><a class="nav-link" href="/home/view">Home</a></li>
