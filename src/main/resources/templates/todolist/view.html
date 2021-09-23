@@ -18,6 +18,8 @@
             <th></th>
             <th>End Date</th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tr th:each="todolist : ${todolist}">
@@ -29,6 +31,9 @@
             <td th:text="${todolist.endtime}"></td>
             <form th:action="@{'/todolist/delete/' + ${todolist.id}}">
             <td><input type="submit" class="btn btn-primary" value="Delete" /></td>
+            </form>
+            <form th:action="@{'/todolist/update/' + ${todolist.id}}">
+                <td><input type="submit" class="btn btn-primary" value="Update" /></td>
             </form>
         </tr>
     </table>
