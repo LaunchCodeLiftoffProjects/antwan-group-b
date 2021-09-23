@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<div class="card-header">
+    <a class="nav-link float-right" href="/home/logout">Logout</a>
+</div>
+</br>
+<form method="post">
+    <div class="form-group">
+        <label>To Do
+            <input class="form-control" th:field="${toDoList.name}">
+        </label>
+        <p class="error" th:errors="${toDoList.name}"></p>
+    </div>
+    <div class="form-group">
+        <label>Member
+            <input class="form-control" th:field="${toDoList.member}">
+        </label>
+        <p class="error" th:errors="${toDoList.member}"></p>
+    </div>
+    <div class="form-group">
+        <label>Start Date
+            <input type="date" th:field="${toDoList.start}" class="form-control"></input>
+
+        </label>
+        <p class="error" th:errors="${toDoList.start}"></p>
+    </div>
+    <div class="form-group">
+        <label>Start Time
+            <input type="time" th:field="${toDoList.starttime}" class="form-control"></input>
+        </label>
+        <p class="error" th:errors="${toDoList.starttime}"></p>
+    </div>
+    <div class="form-group">
+        <label>End Date
+            <input type="date" th:field="${toDoList.enddate}" class="form-control"></input>
+
+        </label>
+        <p class="error" th:errors="${toDoList.enddate}"></p>
+    </div>
+    <div class="form-group">
+        <label>End Time
+            <input type="time" th:field="${toDoList.endtime}" class="form-control"></input>
+        </label>
+        <p class="error" th:errors="${toDoList.endtime}"></p>
+    </div>
+    </br>
+    <input type="submit" class="btn btn-primary" value="Update"/>
+</form>
+</body>
+</html>
