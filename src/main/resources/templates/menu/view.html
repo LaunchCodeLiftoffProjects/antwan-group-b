@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:insert ="fragments :: head"></head>
+<head th:insert ="fragments :: head">
+</head>
 
 <div class="card-header">
     <nav th:insert="fragments :: nav"></nav>
     <h1>Menu</h1>
 </div>
-    <body class="container">
 
+    <body class="container">
+    <br>
         <ul>
             <th:block th:each="menu: ${menu}">
 
                 <ul class="date">
-                    <a th:href="@{/menu/edit/{id}(id=${menu.id})}">
-                    <ul style = "font-weight:bold", th:switch="${menu.date}">
+                    <a th:href="@{/menu/edit/{id}(id=${menu.id})}" style="text-decoration-line:none">
+                    <ul style = "font-weight:bold;font-family:Montserrat;font-size: 2em;color: #4B6587;font-weight: 400;text-decoration-line:underline" th:switch="${menu.date}">
                         <span th:case=1>MONDAY</span>
                         <span th:case=2>TUESDAY</span>
                         <span th:case=3>WEDNESDAY</span>
