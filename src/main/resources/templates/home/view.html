@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:replace="fragments :: head">
+
+    <style>
+            #home-table1{
+            margin-top: 20px;
+        }
+
+        #home-table2{
+            margin-top: 0px;
+        }
+    </style>
+</head>
 
 <div class="card-header">
     <nav th:insert = "fragments :: nav"></nav>
-        <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
+        <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}" style="font-size: 2em; margin:20px 0;"></h1>
         <h1 class= "text-left" th:text="${#strings.capitalizeWords(title1)}"></h1>
 </div>
-</br>
+<br>
 <body class="container">
 
 <div class="row justify-content-start">
     <div class="col-6">
-    <table class="table table-striped">
+    <table class="table table-striped" id="home-table1">
         <thead class="thead-light">
         <tr><th style="font-size: 2rem;">Todays Events</th><th></th></tr>
         <tr>
@@ -35,7 +46,7 @@
 <br>
 
 <div class="row justify-content-start">
-<table class="table table-striped">
+<table class="table table-striped" id="home-table2">
     <thead class="thead-light">
     <tr>
         <th style="font-size: 2rem;">To Do List</th>
