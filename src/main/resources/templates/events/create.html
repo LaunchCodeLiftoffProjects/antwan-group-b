@@ -1,30 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+        <head th:insert ="fragments :: head"></head>
 
+        <div class="card-header">
+            <nav th:insert="fragments :: nav"></nav>
+            <h1>Add An Event</h1>
+        </div>
 
-<body class="container">
-<br>
-<div class="card-header">
-    <section th:replace="fragments :: nav"></section>
-</div>
-<br>
-
-
-<div class="card-header">
-    <tr><th>Create Event</th><th></th></tr>
-</div>
+    <body class="container">
 
         <form method="post">
             <div class="form-group">
                 <label>Event Name
-                <input th:field="${event.name}" class="form-control">
+                    <input th:field="${event.name}" class="form-control">
                 </label>
                 <p class="error" th:errors="${event.name}"></p>
             </div>
             <div class="form-group">
                 <label>Date
-                <input type="date" th:field="${event.eventDetails.date}" class="form-control"></input>
+                    <input type="date" th:field="${event.eventDetails.date}" class="form-control"></input>
 
                 </label>
                 <p class="error" th:errors="${event.eventDetails.date}"></p>
@@ -41,18 +35,18 @@
             <div class="form-group">
                 <label> Who's Going
                     <input th:field="${event.eventDetails.name}" class = "form-control" ></input>
-                    </label>
+                </label>
                 <p class="error" th:errors="${event.eventDetails.name}"></p>
             </div>
             <div class="form-group">
                 <label>Location
-                <input th:field="${event.eventDetails.location}" class="form-control">
+                    <input th:field="${event.eventDetails.location}" class="form-control">
                 </label>
                 <p class="error" th:errors="${event.eventDetails.location}"></p>
             </div>
             <div class="form-group">
                 <label>Notes
-                <input th:field="${event.eventDetails.notes}" class="form-control">
+                    <input th:field="${event.eventDetails.notes}" class="form-control">
                 </label>
                 <p class="error" th:errors="${event.eventDetails.notes}"></p>
             </div>
@@ -60,9 +54,7 @@
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-success">
             </div>
-            <footer th:replace="fragments :: footer"></footer>
-        </form>
 
-        <div th:replace="fragments :: jsBoot"></div>
+        </form>
     </body>
 </html>

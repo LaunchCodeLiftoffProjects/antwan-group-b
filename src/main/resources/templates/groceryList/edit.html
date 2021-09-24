@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+   <head th:insert ="fragments :: head"></head>
 
-
-<body class="container">
-<br>
-
-<div class="card-header">
-   <section th:replace="fragments :: nav"></section>
-</div>
-
-<h1>Edit Item in Grocery List</h1>
-
-<form method="post" action="#">
-   <div class="form-group">
-      <label>Grocery Item: <span th:text="${item.name}">Item Name</span>
-         <input class="form-control" th:field="${item.name}"/>
-      </label>
+   <div class="card-header">
+      <nav th:insert="fragments :: nav"></nav>
+      <h1>Edit Item in Grocery List</h1>
    </div>
-   <p class="error" th:errors="${item.name}"></p>
+
+
+   <body class="container">
    <br>
-   <div class="form-group">
-      <label>Edit Quantity:
-         <input class="form-control" type="number" th:field="${item.quantity}" min="0" max="25"/>
-      </label>
-   </div>
-   <br>
-   <div>
-      <input type="submit" class="btn btn-primary" value="Update item">
-<!--      <input type="hidden" th:value="${item.id}" name="itemId"/>-->
-   </div>
 
-</form>
+      <form method="post" action="#">
+         <div class="form-group">
+            <label>Grocery Item: <span th:text="${item.name}">Item Name</span>
+               <input class="form-control" th:field="${item.name}"/>
+            </label>
+         </div>
+         <p class="error" th:errors="${item.name}"></p>
+         <br>
+         <div class="form-group">
+            <label>Edit Quantity:
+               <input class="form-control" type="number" th:field="${item.quantity}" min="0" max="25"/>
+            </label>
+         </div>
+         <br>
+         <div>
+            <input type="submit" class="btn btn-primary" value="Update item">
+            <!--      <input type="hidden" th:value="${item.id}" name="itemId"/>-->
+         </div>
 
-<div th:replace="fragments :: jsBoot"></div>
+      </form>
 
-</body>
+   </body>
 </html>

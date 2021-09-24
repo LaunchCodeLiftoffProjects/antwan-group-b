@@ -1,22 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
+<head th:replace="fragments :: head"></head>
 
-<body class="container">
 <div class="card-header">
-    <a class="nav-link" href="/home/logout">Logout</a>
+    <nav th:insert = "fragments :: nav"></nav>
+    <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
+    <h1 class= "text-left" th:text="${#strings.capitalizeWords(title1)}"></h1>
 </div>
 </br>
-
-<div class="container">
-    <h3 th:text="${#strings.capitalizeWords(currentdate)}"></h3>
-    <h1 th:text="${#strings.capitalizeWords(title1)}"></h1>
-</div>
-
+<body class="container">
 <table class="table table-striped" style="width:45%;display:inline-block">
     <thead>
-    <tr><th>All Events</th><th></th></tr>
+    <tr><th>Todays Events</th><th></th></tr>
     <tr>
         <th>Who</th>
         <th>Event</th>
@@ -27,6 +23,7 @@
         <td><a th:href="'/events/displayEvent/?eventId='+ ${event.id}" th:text="${event.name}"></a></td>
     </tr>
 </table>
+
 
 <table class="table table-striped" style="width:45%;display:inline-block">
     <thead>
@@ -43,24 +40,13 @@
     <tr th:each="todolist : ${todolist}">
         <td th:text="${todolist.member}"></td>
         <td th:text="${todolist.name}"></td>
-        <td th:text="${todolist.start}"></td>
-        <td th:text="${todolist.starttime}"></td>
-        <td th:text="${todolist.enddate}"></td>
-        <td th:text="${todolist.endtime}"></td>
+        <td th:text="${#dates.format(todolist.start, 'MM-dd-yyyy')}"></td>
+        <td th:text="${#dates.format(todolist.starttime, 'h:mm a')}"></td>
+        <td th:text="${#dates.format(todolist.enddate, 'MM-dd-yyyy')}"></td>
+        <td th:text="${#dates.format(todolist.endtime, 'h:mm a')}"></td>
     </tr>
 </table>
 
-<ul class="card-footer">
-    <ul class="nav">
-    <li class="nav-item"><a class="nav-link" href="/home/todolist">To Do List</a></li>
-    <li class="nav-item"><a class="nav-link" href="/home/grocerylist">Grocery List</a></li>
-    <li class="nav-item"><a class="nav-link" href="/home/events">Events</a></li>
-    <li class="nav-item"><a class="nav-link" href="/home/menu">Menu</a></li>
-
-    </ul>
-</ul>
-
-<div th:replace="fragments :: jsBoot"></div>
 
 </body>
 </html>

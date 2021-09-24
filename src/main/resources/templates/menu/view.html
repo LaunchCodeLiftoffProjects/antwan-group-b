@@ -1,38 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:insert ="fragments :: head"></head>
 
-    <head>
-        <meta charset="UTF-8"/>
-        <link rel = "stylesheet" th:href="@{/styles.css}" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-        <title>Family Organizer: Menu</title>
-    </head>
-    <br>
-
+<div class="card-header">
+    <nav th:insert="fragments :: nav"></nav>
+    <h1>Menu</h1>
+</div>
 <body class="container">
-    <br>
-    <div class="card-header">
-        <section th:replace="fragments :: nav"></section>
-    </div>
-    <br>
-
-    <h1>Family Organizer: Menu</h1>
-    <br>
-
-    <!-- <main>
-        <div class="column1">
-            <p>Column 1</p>
-        </div>
-        <div class="column2">
-            <p>Column 2</p>
-        </div>
-        <div class="column3">
-            <p>Column 3</p>
-        </div>
-    </main> -->
-
+<br>
         <ul>
             <th:block th:each="menu: ${menu}">
 
@@ -46,22 +21,20 @@
                         <span th:case=5>FRIDAY</span>
                         <span th:case=6>SATURDAY</span>
                         <span th:case=7>SUNDAY</span>
-
                     </ul>
                     </a>
+
                 </ul>
-                <ul th:text="${menu.mainCourse}" />
-                <ul th:text="${menu.vegetable}" />
-                <ul th:text="${menu.mainSide}" />
-                <ul th:text="${menu.additionalSide}" />
-                <ul th:text="${menu.dessert}" />
+                    <ul th:text="${menu.mainCourse}" />
+                    <ul th:text="${menu.vegetable}" />
+                    <ul th:text="${menu.mainSide}" />
+                    <ul th:text="${menu.additionalSide}" />
+                    <ul th:text="${menu.dessert}" />
                 <br>
 
              </th:block>
 
         </ul>
-
-        <div th:replace="fragments :: jsBoot"></div>
 
     </body>
 

@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+    <head th:insert ="fragments :: head"></head>
 
-
-<body class="container">
-<br>
-
-<div class="card-header">
-    <section th:replace="fragments :: nav"></section>
-</div>
-
-
-<h1 th:text="${title}">Add Item to Grocery List</h1>
-
-<form method="post">
-    <div class="form-group">
-        <label>Enter new Grocery Item:
-            <input class="form-control" type="text" th:field="${groceryList.name}"/>
-        </label>
-    </div>
-    <p class="error" th:errors="${groceryList.name}"></p>
-
-    <br>
-    <div class="form-group">
-        <label>Enter Quantity:
-            <input class="form-control" type="number" th:field="${groceryList.quantity}" min="0" max="25"/>
-        </label>
-    </div>
-    <p class="error" th:errors="${groceryList.quantity}"></p>
-    <br>
-    <div>
-        <input type="submit" class="btn btn-primary" value="Add item">
+    <div class="card-header">
+        <nav th:insert="fragments :: nav"></nav>
+        <h1>Add Item to Grocery List</h1>
     </div>
 
-</form>
 
-<div th:replace="fragments :: jsBoot"></div>
+    <body class="container">
+        <br>
 
-</body>
+        <form method="post">
+            <div class="form-group">
+                <label>Enter new Grocery Item:
+                    <input class="form-control" type="text" th:field="${groceryList.name}"/>
+                </label>
+            </div>
+            <p class="error" th:errors="${groceryList.name}"></p>
+
+            <br>
+            <div class="form-group">
+                <label>Enter Quantity:
+                    <input class="form-control" type="number" th:field="${groceryList.quantity}" min="0" max="25"/>
+                </label>
+            </div>
+            <p class="error" th:errors="${groceryList.quantity}"></p>
+            <br>
+            <div>
+                <input type="submit" class="btn btn-primary" value="Add item">
+            </div>
+
+        </form>
+
+    </body>
 </html>

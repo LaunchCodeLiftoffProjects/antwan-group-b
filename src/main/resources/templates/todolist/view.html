@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
+<head th:replace="fragments :: head"></head>
+
+
+<div class="card-header">
+    <nav th:replace="fragments :: nav"></nav>
+    <h1>To Do List</h1>
+</div>
 
 <body class="container">
-    <br>
-        <div class="card-header">
-            <section th:replace="fragments :: nav"></section>
-        </div>
-    <br>
-
-    <h1 th:text="${title}">Title of To Do List</h1>
         <table class="table table-striped" style="width:45%;display:inline-block">
             <thead>
             <tr>
@@ -42,13 +40,9 @@
         </div>
         <br>
 
-        </br>
-
         <form th:action="@{/todolist/add}">
             <input type="submit" class="btn btn-primary" value="Add To List"/>
         </form>
-
-    <div th:replace="fragments :: jsBoot"></div>
 
 </body>
 </html>

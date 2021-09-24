@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:insert ="fragments :: head"></head>
 
-<head>
-    <meta charset="UTF-8"/>
-    <link rel = "stylesheet" th:href="@{/styles.css}" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <title>Family Organizer: Edit Menu</title>
-</head>
+<div class="card-header">
+    <nav th:insert="fragments :: nav"></nav>
+    <h1>Edit Menu</h1>
+</div>
 
 <body class="container">
     <br>
-    <div class="card-header">
-        <section th:replace="fragments :: nav"></section>
-    </div>
-    <br>
-
-        <h1>Family Organizer: Edit Menu</h1>
-        <br>
-
         <form method="post" action="#">
 
             <div>
@@ -82,8 +71,6 @@
             <input type="submit" class="btn btn-primary" value="Edit" />
 
         </form>
-
-    <div th:replace="fragments :: jsBoot"></div>
 
     </body>
 

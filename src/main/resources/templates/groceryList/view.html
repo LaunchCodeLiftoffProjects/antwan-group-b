@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-
-
-<body class="container">
-<br>
+<head th:insert ="fragments :: head"></head>
 
 <div class="card-header">
-<section th:replace="fragments :: nav"></section>
+   <nav th:insert="fragments :: nav"></nav>
+   <h1>Grocery List</h1>
 </div>
-<br>
 
-<h1 th:text="${title}">Grocery List</h1>
+<body class="container">
 
 <table class="table table-striped">
-   <thead>
-   <tr>
-      <th>Item</th>
-      <th>Quantity</th>
-      <th></th>
-   </tr>
-   </thead>
+         <thead>
+         <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th></th>
+         </tr>
+         </thead>
 
-   <th:block th:each="item : ${groceryList}">
-      <tr>
-         <td th:text="${item.name}">Add a new item</td>
-         <td th:text="${item.quantity}"></td>
-         <form th:action="@{/groceryList/edit/{id}(id=${item.id})}">
-            <td><input type="submit" value="Edit Item" class="btn btn-outline-success"></td>
-         </form>
-         <form th:action="@{'/groceryList/delete/' + ${item.id}}">
-            <td><input type="submit" value="Delete Item" class="btn btn-outline-danger"></td>
-         </form>
-      </tr>
-   </th:block>
-</table>
-<div>
-   <p th:unless="${groceryList} and ${groceryList.size()}">Uh-Oh!! Your grocery list is empty! You should add some items.</p>
-</div>
-<br>
-<br>
-<div>
-   <p> Total Number of Items: <th:block th:text="${#lists.size(groceryList)}"></th:block></p>
-</div>
+         <th:block th:each="item : ${groceryList}">
+            <tr>
+               <td th:text="${item.name}">Add a new item</td>
+               <td th:text="${item.quantity}"></td>
+               <form th:action="@{/groceryList/edit/{id}(id=${item.id})}">
+                  <td><input type="submit" value="Edit Item" class="btn btn-outline-success"></td>
+               </form>
+               <form th:action="@{'/groceryList/delete/' + ${item.id}}">
+                  <td><input type="submit" value="Delete Item" class="btn btn-outline-danger"></td>
+               </form>
+            </tr>
+         </th:block>
+      </table>
+      <div>
+         <p th:unless="${groceryList} and ${groceryList.size()}">Uh-Oh!! Your grocery list is empty! You should add some items.</p>
+      </div>
+      <br>
+      <br>
+      <div>
+         <p> Total Number of Items: <th:block th:text="${#lists.size(groceryList)}"></th:block></p>
+      </div>
 
-
-<br>
-<br>
-<form th:action="@{/groceryList/add}">
-   <input type="submit" class="btn btn-primary" value="Add To List"/>
-</form>
-
-<div th:replace="fragments :: jsBoot"></div>
+      <br>
+      <br>
+   <form th:action="@{/groceryList/add}">
+      <input type="submit" class="btn btn-primary" value="Add To List"/>
+   </form>
 
 </body>
 </html>
