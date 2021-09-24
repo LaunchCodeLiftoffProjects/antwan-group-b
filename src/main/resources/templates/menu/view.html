@@ -7,19 +7,6 @@
     <h1>Menu</h1>
 </div>
     <body class="container">
-    <br>
-
-    <!-- <main>
-        <div class="column1">
-            <p>Column 1</p>
-        </div>
-        <div class="column2">
-            <p>Column 2</p>
-        </div>
-        <div class="column3">
-            <p>Column 3</p>
-        </div>
-    </main> -->
 
         <ul>
             <th:block th:each="menu: ${menu}">
@@ -48,6 +35,10 @@
              </th:block>
 
         </ul>
+
+        <form th:action="@{/menu/add}">
+            <input type="submit" class="btn btn-primary" value="Add" />
+        </form>
 
     </body>
 
