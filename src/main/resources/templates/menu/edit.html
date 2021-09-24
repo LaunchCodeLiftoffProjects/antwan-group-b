@@ -91,6 +91,18 @@
             <input type="submit" class="btn btn-primary" value="Edit" />
 
         </form>
+        <br>
+
+        <form th:action="@{/menu/delete/{id}(id=${menu.id})}">
+            <input type="submit" class="btn btn-primary" value="Delete">
+        </form>
+        <br>
+
+        <form th:action="@{/menu/view}">
+
+            <input type="submit" class="btn btn-primary" value="Cancel" />
+
+        </form>
 
     </body>
 
