@@ -25,7 +25,8 @@
     <td><a th:text="${event.name}"></a></td>
     <td><a th:text="${event.eventDetails.name}"></a></td>
     <td><a th:text="${#dates.format(event.EventDetails.date, 'MM-dd-yyyy')}"></a></td>
-    <td><a th:text="${#dates.format(event.EventDetails.time, 'h:mm a')}"></a></td>
+    <td><a th:text="${#dates.format(event.EventDetails.startTime, 'h:mm a')}"></a></td>
+    <td><a th:text="${#dates.format(event.EventDetails.endTime, 'h:mm a')}"></a></td>
     <td><a th:text="${event.eventDetails.location}"></a></td>
     <td><a th:text="${event.eventDetails.notes}"></a></td>
     <form th:action="@{'/events/edit/' + ${event.id}}">
@@ -37,6 +38,5 @@
 
   </tr>
 </table>
-<footer th:replace="fragments :: footer"></footer>
 </body>
 </html>

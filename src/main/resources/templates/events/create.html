@@ -24,12 +24,18 @@
             </div>
             <div class="form-group">
                 <label>Start Time
-                    <input type="time" th:field="${event.eventDetails.time}" class="form-control"></input>
+                    <input type="time" th:field="${event.eventDetails.startTime}" class="form-control"></input>
 
                 </label>
-                <p class="error" th:errors="${event.eventDetails.time}"></p>
+                <p class="error" th:errors="${event.eventDetails.startTime}"></p>
             </div>
+            <div class="form-group">
+                <label>Start Time
+                    <input type="time" th:field="${event.eventDetails.endTime}" class="form-control"></input>
 
+                </label>
+                <p class="error" th:errors="${event.eventDetails.endTime}"></p>
+            </div>
 
             <div class="form-group">
                 <label> Who's Going
@@ -53,7 +59,6 @@
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-success">
             </div>
-            <footer th:replace="fragments :: footer"></footer>
         </form>
     </body>
 </html>

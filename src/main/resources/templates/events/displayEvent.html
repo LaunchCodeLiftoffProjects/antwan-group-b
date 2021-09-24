@@ -21,7 +21,11 @@
   </tr>
   <tr>
     <th>Start Time</th>
-    <td th:text="${#dates.format(event.EventDetails.time, 'h:mm a')}"></td>
+    <td th:text="${#dates.format(event.EventDetails.startTime, 'h:mm a')}"></td>
+  </tr>
+  <tr>
+    <th>End Time</th>
+    <td th:text="${#dates.format(event.EventDetails.endTime, 'h:mm a')}"></td>
   </tr>
   <tr>
     <th>Location</th>
@@ -40,6 +44,6 @@
   </form>
 
 </table>
-<footer th:replace="fragments :: footer"></footer>
+
 </body>
 </html>
