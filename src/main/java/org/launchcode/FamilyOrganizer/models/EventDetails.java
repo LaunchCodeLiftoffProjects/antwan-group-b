@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 //@Scope("session")
-public class EventDetails extends AbstractEntity{
+public class EventDetails extends AbstractEntity implements Comparable<Event>{
 
    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern= "yyyy-MM-dd")
@@ -98,4 +98,12 @@ public class EventDetails extends AbstractEntity{
     public void setTime(Date time) {
         this.time = time;
     }
+
+    @Override
+    public int compareTo(Event o){
+        if (getDate() == null || o.eventDetails.getDate() == null)
+            return 0;
+        return getDate().compareTo(o.eventDetails.getDate());
+    }
+
 }

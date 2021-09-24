@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body class="container">
+<head th:replace="fragments :: head"></head>
+
 <div class="card-header">
-    <a class="nav-link float-left" href="/home/view">Home</a>
-    <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <nav th:replace="fragments :: nav"></nav>
+    <h1>To Do List</h1>
 </div>
+
 </br>
+<body class="container">
     <table class="table table-striped" style="width:45%;display:inline-block">
         <thead>
-        <tr><th>To Do List</th><th></th><th></th><th></th></tr>
         <tr>
             <th>Who</th>
             <th>To-Do List</th>
             <th>Start Date</th>
             <th></th>
             <th>End Date</th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
         </thead>
@@ -29,6 +31,9 @@
             <td th:text="${todolist.endtime}"></td>
             <form th:action="@{'/todolist/delete/' + ${todolist.id}}">
             <td><input type="submit" class="btn btn-primary" value="Delete" /></td>
+            </form>
+            <form th:action="@{'/todolist/update/' + ${todolist.id}}">
+                <td><input type="submit" class="btn btn-primary" value="Update" /></td>
             </form>
         </tr>
     </table>

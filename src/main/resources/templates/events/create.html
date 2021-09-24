@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body class="container">
+<head th:insert ="fragments :: head"></head>
+
 <div class="card-header">
-    <nav th:replace="fragments :: nav"></nav>
-    <tr><th>Create Event</th><th></th></tr>
+    <nav th:insert="fragments :: nav"></nav>
+    <h1>Add An Event</h1>
 </div>
+
+
+<body class="container">
+
+
 
         <form method="post">
             <div class="form-group">
@@ -53,7 +57,7 @@
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-success">
             </div>
-            <footer th:replace="fragments :: footer"></footer>
+
         </form>
     </body>
 </html>
