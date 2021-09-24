@@ -7,9 +7,10 @@
     <h1>To Do List</h1>
 </div>
 
-</br>
+<br>
 <body class="container">
-    <table class="table table-striped" style="width:45%;display:inline-block">
+<br>
+    <table class="table table-striped" style="width:100%">
         <thead>
         <tr>
             <th>Who</th>
@@ -29,15 +30,19 @@
             <td th:text="${todolist.starttime}"></td>
             <td th:text="${todolist.enddate}"></td>
             <td th:text="${todolist.endtime}"></td>
-            <form th:action="@{'/todolist/delete/' + ${todolist.id}}">
-            <td><input type="submit" class="btn btn-primary" value="Delete" /></td>
-            </form>
             <form th:action="@{'/todolist/update/' + ${todolist.id}}">
-                <td><input type="submit" class="btn btn-primary" value="Update" /></td>
+                <td><input type="submit" class="btn btn-outline-success" value="Edit" /></td>
             </form>
+            <form th:action="@{'/todolist/delete/' + ${todolist.id}}">
+            <td><input type="submit" class="btn btn-outline-danger" value="Delete" /></td>
+            </form>
+
         </tr>
     </table>
-    </br>
+    <div>
+        <p th:unless="${todolist} and ${todolist.size()}">Your To Do list is empty! You should add some things to do!</p>
+    </div>
+    <br>
     <form th:action="@{/todolist/add}">
     <input type="submit" class="btn btn-primary" value="Add To List"/>
     </form>
