@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
+
+    <style>
+        .form-group{
+            margin: 7.5px, 0;
+        }
+    </style>
+
 </head>
-<body class="container">
 <div class="card-header">
-    <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <nav th:replace="fragments :: nav"></nav>
+    <h1>Edit Your To Do List Task</h1>
 </div>
-</br>
+<br>
+<body class="container">
+
 <form method="post">
     <div class="form-group">
         <label>To Do
@@ -46,8 +55,9 @@
         </label>
         <p class="error" th:errors="${toDoList.endtime}"></p>
     </div>
-    </br>
+    <br>
     <input type="submit" class="btn btn-primary" value="Update"/>
 </form>
+
 </body>
 </html>
