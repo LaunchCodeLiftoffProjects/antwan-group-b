@@ -8,7 +8,6 @@ import org.launchcode.FamilyOrganizer.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,7 +64,6 @@ public class HomeController extends AuthenticationController{
 
             List<Event> todaysEvents = new ArrayList<Event>();
             for (Event element : event1) {
-              //  System.out.println(formatter.format(element.getEventDetails().getDate()));
                 if (formatter.format(element.getEventDetails().getDate()).equals(formatter.format(todaysDate))) {
                     todaysEvents.add(element);
                 }

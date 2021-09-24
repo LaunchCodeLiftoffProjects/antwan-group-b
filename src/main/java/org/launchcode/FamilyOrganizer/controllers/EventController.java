@@ -55,25 +55,28 @@ public class EventController extends AuthenticationController{
             model.addAttribute("event", "All Events");
             User user = getUserFromSession(request.getSession());
             int userId = user.getId();
-            List<Event> event1 = null;
+            List<Event> event1 = (List<Event>) eventRepository.findByUserId(userId);
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date todaysDate = new Date();
+            String formatedTodaysDate = formatter.format(todaysDate);
+
             try {
-                event1 = (List<Event>) eventRepository.findByUserId(userId);
-
-            }
-            catch(Exception e)
-            {
-
-            }
-
-            Collections.sort(event1, new Comparator<Event>(){
-                public int compare(Event date1, Event date2){
-                    if(date1.eventDetails.getDate()== null || date2.eventDetails.getDate()== null)
-                        return 0;
-                    return date1.eventDetails.getDate().compareTo(date2.getEventDetails().getDate());
+                for (Event element : event1) {
+                    if(element.getEventDetails().getDate().before(formatter.parse(formatedTodaysDate)))
+                        eventRepository.delete(element);
                 }
-            });
+                Collections.sort(event1, new Comparator<Event>(){
+                    public int compare(Event date1, Event date2) {
+                        if (date1.eventDetails.getDate() == null || date2.eventDetails.getDate() == null)
+                            return 0;
+
+                        return date1.eventDetails.getDate().compareTo(date2.getEventDetails().getDate());
+                    }});
+            }
+            catch (Exception e) {
+                System.out.println("Exception: " + e);
+            }
+
         model.addAttribute("events", event1);
         return "events/index";
     }
