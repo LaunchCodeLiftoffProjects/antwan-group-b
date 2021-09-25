@@ -45,6 +45,32 @@ public class MenuController extends AuthenticationController{
             return "/menu/add";
         }
 
+//        public static void dateUserTable (Connection con) throws SQLException {
+//            String query = "Select date From menu Where user = user and date = date";
+//            try (Statement stmt = con.createStatement()) {
+//                ResultSet rs = stmt.executeQuery(query);
+//                while (rs.next()) {
+//                    String rsDate = rs.getString(1);
+//                }
+//            }
+//        }
+//
+//        if (date = rsDate) {
+//            model.addAttribute("title", "Add");
+//            return "/menu/add";
+//        }
+//        public static void main(String[] args) throws SQLException {
+//            String query = "Select date From menu" + " Where date = this.date";
+//            try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/family_organizer",
+//                    "family_organizer", "Liftoff2021");
+//                Statement stmt = con.createStatement();) {
+//                ResultSet rs = stmt.executeQuery(query);
+//                while (rs.next()) {
+//                    String rsDate = rs.getString(1);
+//                }
+//            }
+//        }
+
         Menu newMenu = new Menu(menu.getDate(), menu.getMainCourse(), menu.getVegetable(), menu.getMainSide(),
                                 menu.getAdditionalSide(), menu.getDessert(), user);
         menuRepository.save(newMenu);
@@ -114,4 +140,21 @@ public class MenuController extends AuthenticationController{
             return "redirect:/menu/view";
 
             }
+
+        @GetMapping("/delete/{itemID}")
+        public Object deleteMenu(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
+                                 Model model, @PathVariable int itemID) {
+
+            menuRepository.deleteById(itemID);
+            model.addAttribute("title", "Menu");
+            User user = getUserFromSession(request.getSession());
+            int userId = user.getId();
+            List<Menu> menuView = (List<Menu>) menuRepository.findByUserId(userId);
+            List<Menu> sortedDay = menuView.stream().sorted(Comparator.comparing(Menu::getDate))
+                    .collect(Collectors.toList());
+            model.addAttribute("menu", sortedDay);
+
+            return "menu/view";
+        }
+
         }

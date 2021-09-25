@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:insert="fragments :: head"></head>
 <body class="container">
 
 <header th:replace="fragments :: pageHeader"></header>
-
+<hr>
 
 <h2 th:text="${title}">Create an Account</h2>
 
@@ -33,15 +33,12 @@
          <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
       </label>
    </div>
-
+<br>
    <input type="submit" class="btn btn-primary" value="Register" />
 </form>
 
 <footer>
-   <ul class="nav">
-      <li class="nav-item"><a class="nav-link" href="">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-   </ul>
+   <p><a href="/login" style="text-decoration-line:none; font-size:1rem;">Login</a></p>
 </footer>
 
 

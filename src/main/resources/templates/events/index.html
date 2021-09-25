@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:insert ="fragments :: head"></head>
+
+<div class="card-header">
+  <nav th:insert="fragments :: nav"></nav>
+  <h1>All Events</h1>
+</div>
+
 <body class="container">
+<br>
 
-<header th:replace="fragments :: pageHeader"></header>
-<nav th:replace="fragments :: nav"></nav>
-
-<!--where naviagation is, used to be pageHeader -->
 <table class="table table-striped">
   <thead>
-  <tr>
-    <th>All Events</th>
+
   <tr>
     <th>Event</th>
     <th>Who's Going</th>
@@ -18,8 +20,10 @@
     <th>Time</th>
     <th>Location</th>
     <th>Notes</th>
+    <th></th>
+    <th></th>
   </tr>
-  </tr>
+
   </thead>
   <tr th:each="event : ${events}">
     <td><a th:text="${event.name}"></a></td>
@@ -38,5 +42,6 @@
 
   </tr>
 </table>
+
 </body>
 </html>

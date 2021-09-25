@@ -1,32 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
+
+    <style>
+            #home-table1{
+            margin-top: 20px;
+        }
+
+        #home-table2{
+            margin-top: 0px;
+        }
+    </style>
 </head>
-<body class="container">
+
 <div class="card-header">
-        <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
-        <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
-    <a class="nav-link float-right" href="/home/logout">Logout</a>
+    <nav th:insert = "fragments :: nav"></nav>
+        <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}" style="font-size: 2em; margin:20px 0;"></h1>
+        <h1 class= "text-left" th:text="${#strings.capitalizeWords(title1)}"></h1>
 </div>
-</br>
+<br>
+<body class="container">
 
-<table class="table table-striped" style="width:45%;display:inline-block">
-    <thead>
-    <tr><th>All Events</th><th></th></tr>
+<div class="row justify-content-start">
+    <div class="col-6">
+    <table class="table table-striped" id="home-table1">
+        <thead class="thead-light">
+        <tr><th style="font-size: 2rem;">Todays Events</th><th></th></tr>
+        <tr>
+            <th>Who</th>
+            <th>Event</th>
+        </tr>
+        </thead>
+        <tr th:each="event : ${events}">
+            <td th:text="${event.eventDetails.name}">Who's Event</td>
+            <td><a th:href="'/events/displayEvent/?eventId='+ ${event.id}" th:text="${event.name}">Event Name</a></td>
+        </tr>
+    </table>
+        <div>
+            <p th:unless="${events} and ${events.size()}">You have no events scheduled for today.</p>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="row justify-content-start">
+<table class="table table-striped" id="home-table2">
+    <thead class="thead-light">
     <tr>
-        <th>Who</th>
-        <th>Event</th>
-    </tr>
-    </thead>
-    <tr th:each="event : ${events}">
-        <td th:text="${event.eventDetails.name}"></td>
-        <td><a th:href="'/events/displayEvent/?eventId='+ ${event.id}" th:text="${event.name}"></a></td>
-    </tr>
-</table>
-
-<table class="table table-striped" style="width:45%;display:inline-block">
-    <thead>
-    <tr><th>To Do List</th><th></th><th></th></tr>
+        <th style="font-size: 2rem;">To Do List</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    <tr>
     <tr>
         <th>Who</th>
         <th>To-Do List</th>
@@ -45,6 +74,10 @@
         <td th:text="${#dates.format(todolist.endtime, 'h:mm a')}"></td>
     </tr>
 </table>
+    <div>
+        <p th:unless="${todolist} and ${todolist.size()}">You have no tasks in your to-do list.</p>
+    </div>
+</div>
 
 
 </body>

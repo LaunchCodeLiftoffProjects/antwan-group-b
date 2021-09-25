@@ -1,30 +1,22 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:insert ="fragments :: head">
+</head>
 
-    <head>
-        <meta charset="UTF-8"/>
-        <link rel = "stylesheet" th:href="@{/styles.css}" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-        <title>Family Organizer: Menu</title>
-    </head>
-    <br>
+<div class="card-header" style="margin-bottom:20px">
+    <nav th:insert="fragments :: nav"></nav>
+    <h1>Menu</h1>
+</div>
 
     <body class="container">
+    <br>
 
-
-        <h1>Family Organizer: Menu</h1>
-        <br>
-
-
-
-        <ul>
+        <ul style="padding-left:0;">
             <th:block th:each="menu: ${menu}">
 
-                <ul class="date">
-                    <a th:href="@{/menu/edit/{id}(id=${menu.id})}">
-                    <ul style = "font-weight:bold", th:switch="${menu.date}">
+                <ul class="date" style="padding-left:15px">
+                    <a th:href="@{/menu/edit/{id}(id=${menu.id})}" style="text-decoration-line:none">
+                    <ul style = "font-weight:bold;font-family:Montserrat;font-size: 2em;color: #4B6587;font-weight: 400;text-decoration-line:underline" th:switch="${menu.date}">
                         <span th:case=1>MONDAY</span>
                         <span th:case=2>TUESDAY</span>
                         <span th:case=3>WEDNESDAY</span>
@@ -36,16 +28,21 @@
                     </ul>
                     </a>
                 </ul>
-                <ul th:text="${menu.mainCourse}" />
-                <ul th:text="${menu.vegetable}" />
-                <ul th:text="${menu.mainSide}" />
-                <ul th:text="${menu.additionalSide}" />
-                <ul th:text="${menu.dessert}" />
+
+                <ul th:text="${menu.mainCourse}" class="list" style="padding-left:15px"/>
+                <ul th:text="${menu.vegetable}" class="list" style="padding-left:15px"/>
+                <ul th:text="${menu.mainSide}" class="list" style="padding-left:15px"/>
+                <ul th:text="${menu.additionalSide}" class="list" style="padding-left:15px"/>
+                <ul th:text="${menu.dessert}" class="list" style="padding-left:15px"/>
                 <br>
 
              </th:block>
 
         </ul>
+
+        <form th:action="@{/menu/add}">
+            <input type="submit" class="btn btn-primary" value="Add" />
+        </form>
 
     </body>
 

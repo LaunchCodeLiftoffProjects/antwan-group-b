@@ -1,6 +1,7 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
 import org.launchcode.FamilyOrganizer.data.ToDoListRepository;
+import org.launchcode.FamilyOrganizer.models.Event;
 import org.launchcode.FamilyOrganizer.models.ToDoList;
 import org.launchcode.FamilyOrganizer.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("todolist")
@@ -114,5 +116,38 @@ public class ToDoListController extends AuthenticationController{
         return "todolist/view";
     }
 
+    @GetMapping("/update/{listId}")
+    public String displayEditEventForm(Model model, @PathVariable int listId){
+
+        Optional toDoList = toDoListRepository.findById(listId);
+        if (toDoList.isPresent()) {
+            ToDoList individualtodolist = (ToDoList) toDoList.get();
+            model.addAttribute("toDoList", individualtodolist);
+            return "/todolist/update";
+        } else {
+            return "/todolist/view";
+        }
+    }
+
+    @PostMapping("/update/{listId}")
+    public String processEditEventForm(@PathVariable int listId, Model model,
+                                       @Valid @ModelAttribute ToDoList item,
+                                       Errors errors) {
+        if (errors.hasErrors()) {
+            return "redirect:/todolist/view";
+        }
+        Optional<ToDoList> toDoList = toDoListRepository.findById(listId);
+        if(toDoList.isPresent()) {
+            ToDoList newList = toDoList.get();
+            newList.setName(item.getName());
+            newList.setMember(item.getMember());
+            newList.setStart(item.getStart());
+            newList.setStarttime(item.getStarttime());
+            newList.setEnddate(item.getEnddate());
+            newList.setEndtime(item.getEndtime());
+            toDoListRepository.save(newList);
+        }
+        return "redirect:/todolist/view";
+    }
 
 }

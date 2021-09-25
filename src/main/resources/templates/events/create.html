@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body class="container">
+<head th:insert ="fragments :: head"></head>
+
 <div class="card-header">
-    <nav th:replace="fragments :: nav"></nav>
-    <tr><th>Create Event</th><th></th></tr>
+    <nav th:insert="fragments :: nav"></nav>
+    <h1>Add An Event</h1>
 </div>
 
+
+<body class="container">
+<br>
         <form method="post">
             <div class="form-group">
                 <label>Event Name
@@ -55,10 +57,11 @@
                 </label>
                 <p class="error" th:errors="${event.eventDetails.notes}"></p>
             </div>
-
+        <br>
             <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-success">
+                <input type="submit" value="Submit" class="btn btn-primary">
             </div>
+
         </form>
     </body>
 </html>

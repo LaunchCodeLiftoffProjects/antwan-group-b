@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body class="container">
+<head th:insert ="fragments :: head"></head>
 
-<header th:replace="fragments :: pageHeader"></header>
 <div class="card-header">
-  <nav th:replace="fragments :: nav"></nav>
-  <h1 class= "float-left" th:text="${#strings.capitalizeWords(currentdate)}"></h1>
-  <h1 class= "text-center" th:text="${#strings.capitalizeWords(title1)}"></h1>
+  <nav th:insert="fragments :: nav"></nav>
+  <h1>Event</h1>
 </div>
-</br>
+
+<body class="container">
+<br>
 <table class="table table-striped">
   <tr>
     <th>Event Name</th>
-    <td th:text="${event.name}"></td>
+    <td th:text="${event.name}" style="font-size: 1em;color: #4B6587;font-weight: 400;"></td>
   </tr>
   <tr>
     <th>Date</th>
-    <td th:text="${#dates.format(event.EventDetails.date, 'MM-dd-yyyy')}"></td>
+    <td th:text="${#dates.format(event.EventDetails.date, 'MM-dd-yyyy')}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
   </tr>
   <tr>
     <th>Start Time</th>
-    <td th:text="${#dates.format(event.EventDetails.startTime, 'h:mm a')}"></td>
+    <td th:text="${#dates.format(event.EventDetails.startTime, 'h:mm a')}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
   </tr>
   <tr>
     <th>End Time</th>
-    <td th:text="${#dates.format(event.EventDetails.endTime, 'h:mm a')}"></td>
+    <td th:text="${#dates.format(event.EventDetails.endTime, 'h:mm a')}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
+
   </tr>
   <tr>
     <th>Location</th>
-    <td th:text="${event.eventDetails.location}"></td>
+    <td th:text="${event.eventDetails.location}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
   </tr>
   <tr>
     <th>Who's going</th>
-    <td  th:text="${event.eventDetails.name}"></td>
+    <td  th:text="${event.eventDetails.name}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
   </tr>
   <tr>
     <th>Notes</th>
-    <td th:text="${event.eventDetails.notes}"></td>
+    <td th:text="${event.eventDetails.notes}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
   </tr>
-  <form th:action="@{'/events/cancel/' + ${event.id}}">
-    <td><input type="submit" class="btn btn-primary" value="Cancel" /></td>
-  </form>
-
 </table>
+
+
+<br>
+<form th:action="@{'/events/cancel/' + ${event.id}}">
+  <input type="submit" class="btn btn-outline-danger" value="Cancel" />
+</form>
+
 
 </body>
 </html>
