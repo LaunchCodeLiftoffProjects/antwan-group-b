@@ -1,6 +1,7 @@
 package org.launchcode.FamilyOrganizer.controllers;
 
 import org.launchcode.FamilyOrganizer.data.MenuRepository;
+import org.launchcode.FamilyOrganizer.models.AbstractEntity;
 import org.launchcode.FamilyOrganizer.models.Menu;
 import org.launchcode.FamilyOrganizer.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -25,7 +27,7 @@ public class MenuController extends AuthenticationController{
     private static List<Menu> menu = new ArrayList<>();
 
     @Autowired
-    MenuRepository menuRepository;
+    MenuRepository<AbstractEntity, Number> menuRepository;
 
     @GetMapping("/add")
     public String getMenuForm(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
@@ -36,7 +38,8 @@ public class MenuController extends AuthenticationController{
     @PostMapping("/add")
 
     public Object processMenuAddForm(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
-                                     Model model) throws ParseException {
+                                     Model model)
+                                     throws ParseException, SQLException {
 
         User user = getUserFromSession(request.getSession());
 
@@ -45,38 +48,35 @@ public class MenuController extends AuthenticationController{
             return "/menu/add";
         }
 
-//        public static void dateUserTable (Connection con) throws SQLException {
-//            String query = "Select date From menu Where user = user and date = date";
-//            try (Statement stmt = con.createStatement()) {
-//                ResultSet rs = stmt.executeQuery(query);
-//                while (rs.next()) {
-//                    String rsDate = rs.getString(1);
-//                }
-//            }
-//        }
-//
-//        if (date = rsDate) {
-//            model.addAttribute("title", "Add");
-//            return "/menu/add";
-//        }
-//        public static void main(String[] args) throws SQLException {
-//            String query = "Select date From menu" + " Where date = this.date";
-//            try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/family_organizer",
-//                    "family_organizer", "Liftoff2021");
-//                Statement stmt = con.createStatement();) {
-//                ResultSet rs = stmt.executeQuery(query);
-//                while (rs.next()) {
-//                    String rsDate = rs.getString(1);
-//                }
-//            }
-//        }
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/family_organizer",
+                "family_organizer", "LiftOff2021");
+        try (PreparedStatement checkDateExists = con.prepareStatement(
+                "SELECT COUNT(date) AS count FROM menu WHERE user_id = ? AND date = ?")) {
+            checkDateExists.setInt(1, user.getId());
+            checkDateExists.setString(2, (menu.getDate()));
 
-        Menu newMenu = new Menu(menu.getDate(), menu.getMainCourse(), menu.getVegetable(), menu.getMainSide(),
-                                menu.getAdditionalSide(), menu.getDessert(), user);
-        menuRepository.save(newMenu);
+        try (ResultSet rs = checkDateExists.executeQuery()) {
 
-        return "redirect:/menu/view";
-    }
+            rs.next();
+            if (rs.getInt("count") == 0) {
+
+                System.out.println(rs.getInt("count"));
+                Menu newMenu = new Menu(menu.getDate(), menu.getMainCourse(), menu.getVegetable(), menu.getMainSide(),
+                        menu.getAdditionalSide(), menu.getDessert(), user);
+                menuRepository.save(newMenu);
+
+            } else {
+                return "redirect:/menu/view";
+            }
+
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        }
+
+            return "redirect:/menu/view";
+
+       }
+   }
 
     @GetMapping("/view")
     public String getMenuView(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
@@ -91,13 +91,6 @@ public class MenuController extends AuthenticationController{
 
         return "/menu/view";
     }
-
-    /*@PostMapping("/view")
-    public String processMenu(@ModelAttribute @Valid Menu menu, Errors errors, HttpServletRequest request,
-                               Model model) {
-        model.addAttribute("title", "menuView");
-        return "redirect:/menu/view";
-    }*/
 
     @GetMapping("edit/{id}")
     public String displayMenuEditForm(Model model, @PathVariable("id") int id) {
@@ -157,4 +150,4 @@ public class MenuController extends AuthenticationController{
             return "menu/view";
         }
 
-        }
+}

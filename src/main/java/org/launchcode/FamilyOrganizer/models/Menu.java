@@ -46,18 +46,6 @@ public class Menu extends AbstractEntity {
 
     }
 
-//    public String day(String[] args) throws SQLException {
-//        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/family_organizer",
-//                "family_organizer", "LiftOff2021");
-//        try (var ps = conn.prepareStatement("SELECT date FROM menu WHERE user = ? and date = ?");
-//            ps.setInt(1, getId());
-//            ps.setString(2, date);
-//            ResultSet rs = ps.executeQuery() ) {
-//
-//            return rs.getString(1);
-//            }
-//    }
-
     @Override
     public int getId() {
         return super.getId();
