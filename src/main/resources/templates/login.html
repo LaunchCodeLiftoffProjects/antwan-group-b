@@ -14,15 +14,19 @@
       </label>
       <p class="error" th:errors="${loginFormDTO.username}"></p>
    </div>
+   <br>
+
    <div class="form-group">
       <label>Password
          <input class="form-control" th:field="${loginFormDTO.password}" type="password">
       </label>
       <p class="error" th:errors="${loginFormDTO.password}"></p>
    </div>
+   <br>
 
    <input type="submit" class="btn btn-primary" value="Log In"/>
 </form>
+<br>
 
 <p>Don't have an account? <a href="/register">Register for one.</a></p>
 

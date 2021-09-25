@@ -15,12 +15,15 @@
       </label>
       <p class="error" th:errors="${registerFormDTO.username}"></p>
    </div>
+   <br>
+
    <div class="form-group">
       <label>Enter Family Name
          <input class="form-control" th:field="${registerFormDTO.familyName}" />
       </label>
       <p class="error" th:errors="${registerFormDTO.familyName}"></p>
    </div>
+   <br>
 
    <div class="form-group">
       <label>Enter Password
@@ -28,11 +31,14 @@
       </label>
       <p class="error" th:errors="${registerFormDTO.password}"></p>
    </div>
+   <br>
+
    <div class="form-group">
       <label>Verify Password
          <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
       </label>
    </div>
+   <br>
 
    <input type="submit" class="btn btn-primary" value="Register" />
 </form>
