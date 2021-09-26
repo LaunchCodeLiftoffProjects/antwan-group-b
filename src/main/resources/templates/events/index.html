@@ -17,7 +17,8 @@
     <th>Event</th>
     <th>Who's Going</th>
     <th>Date</th>
-    <th>Time</th>
+    <th>Start Time</th>
+    <th>End Time</th>
     <th>Location</th>
     <th>Notes</th>
     <th></th>
@@ -42,6 +43,8 @@
 
   </tr>
 </table>
-
+<div>
+  <p th:unless="${events} and ${events.size()}">You have no events entered.</p>
+</div>
 </body>
 </html>

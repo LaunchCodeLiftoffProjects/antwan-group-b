@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -89,7 +90,7 @@ public class EventController extends AuthenticationController{
 
     @PostMapping("/create")
     public Object processCreateEventForm(@ModelAttribute @Valid Event event,
-                                         Errors errors, Model model, HttpServletRequest request){
+                                         Errors errors, Model model, HttpServletRequest request)throws ParseException {
         User user = getUserFromSession(request.getSession());
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Event");
