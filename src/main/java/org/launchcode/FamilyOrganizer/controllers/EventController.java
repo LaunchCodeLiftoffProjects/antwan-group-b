@@ -85,7 +85,7 @@ public class EventController extends AuthenticationController{
     }
 
     @PostMapping("/create")
-    public Object processCreateEventForm(@ModelAttribute Date date, @ModelAttribute Date time, Event event,
+    public Object processCreateEventForm(@ModelAttribute @Valid Event event,
                                          Errors errors, Model model, HttpServletRequest request){
         User user = getUserFromSession(request.getSession());
         if(errors.hasErrors()){
@@ -153,7 +153,8 @@ public class EventController extends AuthenticationController{
             dbItem.setName(item.getName());
             dbItem.eventDetails.setName(item.eventDetails.getName());
             dbItem.eventDetails.setDate(item.eventDetails.getDate());
-            dbItem.eventDetails.setTime(item.eventDetails.getTime());
+            dbItem.eventDetails.setStartTime(item.eventDetails.getStartTime());
+            dbItem.eventDetails.setEndTime(item.eventDetails.getEndTime());
             dbItem.eventDetails.setLocation(item.eventDetails.getLocation());
             dbItem.eventDetails.setNotes(item.eventDetails.getNotes());
             eventRepository.save(dbItem);

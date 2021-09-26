@@ -18,10 +18,13 @@ public class EventDetails extends AbstractEntity implements Comparable<Event>{
 
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern= "HH:mm")
-    @Column(name="time")
-    private Date time;
+    @Column(name="startTime")
+    private Date startTime;
 
-
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern= "HH:mm")
+    @Column(name="endTime")
+    private Date endTime;
 
 
 
@@ -45,13 +48,14 @@ public class EventDetails extends AbstractEntity implements Comparable<Event>{
 
     }
 
-   public EventDetails(Date date, String name, String location, String notes, Date time, User user) {
+   public EventDetails(Date date, String name, String location, String notes, Date startTime, Date endTime, User user) {
         this.date = date;
         this.name = name;
         this.location = location;
         this.notes = notes;
         this.user = user;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
 
    }
 
@@ -91,12 +95,20 @@ public class EventDetails extends AbstractEntity implements Comparable<Event>{
         return user;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     @Override

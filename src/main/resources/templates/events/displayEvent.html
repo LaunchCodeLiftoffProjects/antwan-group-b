@@ -20,7 +20,12 @@
   </tr>
   <tr>
     <th>Start Time</th>
-    <td th:text="${#dates.format(event.EventDetails.time, 'h:mm a')}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
+    <td th:text="${#dates.format(event.EventDetails.startTime, 'h:mm a')}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
+  </tr>
+  <tr>
+    <th>End Time</th>
+    <td th:text="${#dates.format(event.EventDetails.endTime, 'h:mm a')}" style="font-size: 1.25em;color: #4B6587;font-weight: 500;"></td>
+
   </tr>
   <tr>
     <th>Location</th>
@@ -36,10 +41,12 @@
   </tr>
 </table>
 
+
 <br>
 <form th:action="@{'/events/cancel/' + ${event.id}}">
   <input type="submit" class="btn btn-outline-danger" value="Cancel" />
 </form>
+
 
 </body>
 </html>
