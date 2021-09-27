@@ -38,7 +38,7 @@
       <td><input type="submit" value="Edit Event" class="btn btn-outline-success"></td>
     </form>
     <form th:action="@{'/events/cancel/' + ${event.id}}">
-      <td><input type="submit" class="btn btn-primary" value="Cancel" /></td>
+      <td><input type="submit" class="btn btn-outline-danger" value="Delete" /></td>
     </form>
 
   </tr>
@@ -46,5 +46,9 @@
 <div>
   <p th:unless="${events} and ${events.size()}">You have no events entered.</p>
 </div>
+
+<form th:action="@{/events/create}">
+  <input type="submit" class="btn btn-primary" value="Add an Event"/>
+</form>
 </body>
 </html>
